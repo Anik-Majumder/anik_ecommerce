@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProductSize extends Model
 {
-    public function sizes(): BelongsTo
+    public function size(): BelongsTo
     {
         return $this->belongsTo(Size::class);
     }
-    public function products(): BelongsTo
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }

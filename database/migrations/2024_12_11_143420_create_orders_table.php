@@ -10,14 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->integer('phone');
-            $table->char('password');
-            $table->text('profile_img')->nullable();
-            $table->rememberToken();
+            $table->foreignId('customer_id')->constrained();
+            $table->integer('subtotal');
+            $table->integer('total');
+            $table->integer('shipping_charge');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('orders');
     }
 };
