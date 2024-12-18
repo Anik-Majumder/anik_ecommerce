@@ -6,6 +6,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Yajra\DataTables\Facades\DataTables;
 
 class AdminController extends Controller
 {
@@ -14,7 +15,21 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.template.components.admin-table');
+    }
+
+    public function getAdminData()
+    {
+        $admins = Admin::get();
+
+        return DataTables::of($admins)
+            ->addColumn('action', function ($admin) {
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $admin->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                <a id="deleteAdminBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $admin->id . '">Delete</a>';
+            })->addColumn('profile_img', function ($admin) {
+                return '<img src="' . $admin->profile_img . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+            })->rawColumns(['profile_img', 'action'])
+            ->make(true);
     }
 
     /**
@@ -62,10 +77,39 @@ class AdminController extends Controller
     {
         $request->validate(
             [
+                'name' => 'string',
                 'email' => ['required', 'string', 'email', 'lowercase'],
+                'phone' => 'string',
                 'password' => ['required'],
             ]
         );
+
+        $admin = new Admin();
+
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->phone = $request->phone;
+        $admin->password = $request->password;
+
+        // single image upload
+
+        if ($request->hasFile('profile_img')) {
+            $profile_img = $request->file('profile_img');
+            $img = uniqid() . '.' . time() . '.' . $profile_img->getClientOriginalExtension();
+            $profile_img->move(public_path('images/admin/'), $img);
+            $admin->profile_img = 'images/admin/' . $img;
+        }
+        // single image upload end
+
+        $check = $admin->save();
+
+        if ($check) {
+            return response()->json(['message' => 'success', 'data' => $admin], 200);
+        }
+
+        // return response()->json(['message' => 'failed', 'data' => ''], 400);
+
+        // check auth and redirect admin to dashboard afrer registration
 
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
@@ -91,7 +135,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        //
+        return response()->json(['message' => 'success', 'data' => $admin], 200);
     }
 
     /**
@@ -99,12 +143,49 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
-        //
+        $request->validate(
+            [
+                'name' => 'string',
+                'email' => ['required', 'string', 'email', 'lowercase'],
+                'phone' => 'string',
+                'password' => ['required'],
+            ]
+        );
+
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->phone = $request->phone;
+        $admin->password = $request->password;
+
+        // single image upload
+
+        if ($request->hasFile('profile_img')) {
+            $profile_img = $request->file('profile_img');
+            $img = uniqid() . '.' . time() . '.' . $profile_img->getClientOriginalExtension();
+            $profile_img->move(public_path('images/admin/'), $img);
+            $admin->profile_img = 'images/admin/' . $img;
+        }
+        // single image upload end
+
+        $check = $admin->save();
+
+        if ($check) {
+            return response()->json(['message' => 'success', 'data' => $admin], 200);
+        }
+
+        return response()->json(['message' => 'failed', 'data' => ''], 400);
     }
 
     /**
      * Remove the specified resource from storage.
      */
+
+    public function destroy(Admin $admin)
+    {
+        $admin->delete();
+
+        return response()->json(['message' => 'success', 'data' => ''], 200);
+    }
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();

@@ -22,7 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
 
 
 
@@ -45,3 +44,14 @@ Route::middleware('is_admin')->prefix('admin')->name('admin.')->group(function (
 
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 });
+
+// backend routes
+
+// admin routes
+
+Route::get('/get-admins-data', [AdminController::class, 'getAdminData'])->name('get-admin-data');
+
+Route::resource('/admins', AdminController::class)->names('admin');
+
+
+require __DIR__ . '/auth.php';

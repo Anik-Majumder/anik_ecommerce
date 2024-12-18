@@ -12,11 +12,12 @@ return new class extends Migration {
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
+            $table->text('profile_img')->nullable();
             $table->string('name');
             $table->string('email');
             $table->integer('phone');
             $table->char('password');
-            $table->text('profile_img')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });
