@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
@@ -52,6 +53,14 @@ Route::middleware('is_admin')->prefix('admin')->name('admin.')->group(function (
 Route::get('/get-admins-data', [AdminController::class, 'getAdminData'])->name('get-admin-data');
 
 Route::resource('/admins', AdminController::class)->names('admin');
+
+//brand routes
+
+Route::get('/get-brands-data', [BrandController::class, 'getBrandsData'])->name('get-brand-data');
+
+Route::resource('/brands', BrandController::class)->names('brand');
+
+
 
 
 require __DIR__ . '/auth.php';

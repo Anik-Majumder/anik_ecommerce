@@ -107,7 +107,7 @@ class AdminController extends Controller
             return response()->json(['message' => 'success', 'data' => $admin], 200);
         }
 
-        // return response()->json(['message' => 'failed', 'data' => ''], 400);
+        return response()->json(['message' => 'failed', 'data' => ''], 400);
 
         // check auth and redirect admin to dashboard afrer registration
 
@@ -117,7 +117,7 @@ class AdminController extends Controller
             return redirect()->intended(route('admin.dashboard', absolute: false));
         }
 
-        return back()->route('login')->with('error', 'Invalid Credentials');
+
 
 
     }
