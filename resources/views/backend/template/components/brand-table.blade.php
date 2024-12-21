@@ -15,7 +15,7 @@
                             <li class="breadcrumb-item">
                                 <a href="javascript: void(0);">Tables</a>
                             </li>
-                            <li class="breadcrumb-item active">Data Tables</li>
+                            <li class="breadcrumb-item active">Brands</li>
                         </ol>
                     </div>
                 </div>
@@ -36,12 +36,12 @@
                                 data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop"
                             >
-                                Add Admin
+                                Add Brand
                             </button>
                         </div>
                         <!-- Satic modal button end-->
                         <table
-                            id="adminTable"
+                            id="brandTable"
                             class="table table-striped table-bordered dt-responsive nowrap"
                             style="
                                 border-collapse: collapse;
@@ -52,11 +52,9 @@
                             <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>profile_img</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Password</th>
+                                    <th>Brand Image</th>
+                                    <th>Brand Name</th>
+                                    <th>Brand Slug</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -88,7 +86,7 @@
                                     class="modal-title"
                                     id="staticBackdropLabel"
                                 >
-                                    Add Admin
+                                    Add Brand
                                 </h5>
                                 <button
                                     type="button"
@@ -104,21 +102,22 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <form
-                                                    id="adminAddForm"
+                                                    id="brandAddForm"
                                                     class="needs-validation"
                                                     novalidate
                                                 >
                                                     @csrf
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div class="mb-3">
                                                                 <label
                                                                     class="form-label"
                                                                     for="validationCustom01"
-                                                                    >Name</label
+                                                                    >Brand
+                                                                    Name</label
                                                                 >
                                                                 <input
-                                                                    name="name"
+                                                                    name="brand_name"
                                                                     type="text"
                                                                     class="form-control"
                                                                     id="validationCustom01"
@@ -126,15 +125,18 @@
                                                                 />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
                                                             <div class="mb-3">
                                                                 <label
                                                                     for="example-email-input"
                                                                     class="form-label"
-                                                                    >Email</label
+                                                                    >Brand
+                                                                    Slug</label
                                                                 >
                                                                 <input
-                                                                    name="email"
+                                                                    name="brand_slug"
                                                                     class="form-control"
                                                                     type="email"
                                                                     id="example-email-input"
@@ -143,51 +145,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-tel-input"
-                                                                    class="col-form-label"
-                                                                    >Phone</label
-                                                                >
-                                                                <div class="">
-                                                                    <input
-                                                                        name="phone"
-                                                                        class="form-control"
-                                                                        type="number"
-                                                                        id="example-tel-input"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-password-input"
-                                                                    class="col-form-label"
-                                                                    >Password</label
-                                                                >
-                                                                <div class="">
-                                                                    <input
-                                                                        name="password"
-                                                                        class="form-control"
-                                                                        type="password"
-                                                                        id="example-password-input"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
                                                         <div class="mb-3">
                                                             <label
                                                                 class="input-group-text"
                                                                 for="inputGroupFile02"
-                                                                >Upload
+                                                                >Upload Brand
                                                                 Image</label
                                                             >
                                                             <input
-                                                                name="profile_img"
+                                                                name="brand_image"
                                                                 type="file"
                                                                 class="form-control"
                                                                 id="inputGroupFile02"
@@ -249,7 +215,7 @@
                                     class="modal-title"
                                     id="staticBackdropLabel"
                                 >
-                                    Edit Admin
+                                    Edit Brand
                                 </h5>
                                 <button
                                     type="button"
@@ -265,7 +231,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <form
-                                                    id="adminFormUpdate"
+                                                    id="brandFormUpdate"
                                                     class="needs-validation"
                                                     novalidate
                                                 >
@@ -276,69 +242,39 @@
                                                         name="edit_id"
                                                     />
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div class="mb-3">
                                                                 <label
                                                                     class="form-label"
                                                                     for="validationCustom01"
-                                                                    >Name</label
+                                                                    >Brand
+                                                                    Name</label
                                                                 >
                                                                 <input
-                                                                    name="name"
+                                                                    name="brand_name"
                                                                     type="text"
                                                                     class="form-control"
-                                                                    id="name"
+                                                                    id="brand_name"
                                                                     required
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Email</label
-                                                                >
-                                                                <input
-                                                                    name="email"
-                                                                    class="form-control"
-                                                                    type="email"
-                                                                    id="email"
                                                                 />
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div class="mb-3">
                                                                 <label
                                                                     for="example-tel-input"
                                                                     class="col-form-label"
-                                                                    >Phone</label
+                                                                    >Brand
+                                                                    Slug</label
                                                                 >
                                                                 <div class="">
                                                                     <input
-                                                                        name="phone"
+                                                                        name="brand_slug"
                                                                         class="form-control"
                                                                         type="number"
-                                                                        id="phone"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-password-input"
-                                                                    class="col-form-label"
-                                                                    >Password</label
-                                                                >
-                                                                <div class="">
-                                                                    <input
-                                                                        name="password"
-                                                                        class="form-control"
-                                                                        type="password"
-                                                                        id="password"
+                                                                        id="brand_slug"
                                                                     />
                                                                 </div>
                                                             </div>
@@ -349,10 +285,11 @@
                                                             <label
                                                                 class="input-group-text"
                                                                 for="inputGroupFile02"
-                                                                >Image</label
+                                                                >Brand
+                                                                Image</label
                                                             >
                                                             <input
-                                                                name="profile_img"
+                                                                name="brand_image"
                                                                 type="file"
                                                                 class="form-control"
                                                                 id=""
@@ -419,31 +356,24 @@
 
     var token = $("input[name='_token']").val();
 
-    let adminTable = $("#adminTable").DataTable({
+    let brandTable = $("#brandTable").DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('get-admin-data') }}",
+        ajax: "{{ route('get-brand-data') }}",
 
         columns: [
             {
                 data: "id",
             },
             {
-                data: "profile_img",
+                data: "brand_image",
             },
             {
-                data: "name",
+                data: "brand_name",
             },
             {
-                data: "email",
+                data: "brand_slug",
             },
-            {
-                data: "phone",
-            },
-            {
-                data: "password",
-            },
-
             {
                 data: "action",
                 name: "Action",
@@ -455,11 +385,10 @@
 
     // add adminn
 
-    $("#adminAddForm").submit(function (e) {
+    $("#brandAddForm").submit(function (e) {
         e.preventDefault();
-        console.log("error");
         $.ajax({
-            url: "{{ route('admin.store') }}",
+            url: "{{ route('brand.store') }}",
             type: "POST",
             data: new FormData(this),
             processData: false,
@@ -467,9 +396,9 @@
             success: function (res) {
                 console.log("success");
 
-                $("#adminAddForm")[0].reset();
+                $("#brandAddForm")[0].reset();
                 $(".addModal").modal("hide");
-                adminTable.ajax.reload();
+                brandTable.ajax.reload();
             },
             error: function (err) {
                 console.log(err);

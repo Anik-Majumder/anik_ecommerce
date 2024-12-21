@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class BrandController extends Controller
 {
@@ -13,6 +14,20 @@ class BrandController extends Controller
     public function index()
     {
         return view('backend.template.components.brand-table');
+    }
+
+    public function getBrandsData()
+    {
+        $admins = Brand::get();
+
+        return DataTables::of($admins)
+            ->addColumn('action', function ($brand) {
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $brand->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                <a id="deleteBrandBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $brand->id . '">Delete</a>';
+            })->addColumn('brand_image', function ($brand) {
+                return '<img src="' . $brand->brand_image . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+            })->rawColumns(['brand_image', 'action'])
+            ->make(true);
     }
 
     /**
@@ -28,7 +43,36 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'brand_name' => ['required', 'string'],
+                'brand_slug' => 'string',
+            ]
+        );
+
+        $brand = new Brand();
+
+        $brand->brand_image = $request->brand_image;
+        $brand->brand_name = $request->brand_name;
+        $brand->brand_slug = $request->brand_slug;
+
+        // single image upload
+
+        if ($request->hasFile('brand_image')) {
+            $brand_image = $request->file('brand_image');
+            $img = uniqid() . '.' . time() . '.' . $brand_image->getClientOriginalExtension();
+            $brand_image->move(public_path('images/brands/'), $img);
+            $brand->brand_image = 'images/brands/' . $img;
+        }
+        // single image upload end
+
+        $check = $brand->save();
+
+        if ($check) {
+            return response()->json(['message' => 'success', 'data' => $brand], 200);
+        }
+
+        return response()->json(['message' => 'failed', 'data' => ''], 400);
     }
 
     /**
