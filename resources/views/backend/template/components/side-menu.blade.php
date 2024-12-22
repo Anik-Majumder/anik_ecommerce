@@ -38,6 +38,9 @@
                             <a href="{{ url('/brands') }}">
                                 <span>Brands</span>
                             </a>
+                            <a href="{{ url('/basicinfos') }}">
+                                <span>Basic Info</span>
+                            </a>
                         </li>
                     </ul>
                 </li>

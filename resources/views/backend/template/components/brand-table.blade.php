@@ -251,7 +251,7 @@
                                                                     Name</label
                                                                 >
                                                                 <input
-                                                                    name=""
+                                                                    name="brand_name"
                                                                     type="text"
                                                                     class="form-control"
                                                                     id="brand_name"
@@ -271,7 +271,7 @@
                                                                 >
                                                                 <div class="">
                                                                     <input
-                                                                        name=""
+                                                                        name="brand_slug"
                                                                         class="form-control"
                                                                         type="text"
                                                                         id="brand_slug"

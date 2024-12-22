@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -18,9 +19,9 @@ class BrandController extends Controller
 
     public function getBrandsData()
     {
-        $admins = Brand::get();
+        $brands = Brand::get();
 
-        return DataTables::of($admins)
+        return DataTables::of($brands)
             ->addColumn('action', function ($brand) {
                 return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $brand->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
                 <a id="deleteBrandBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $brand->id . '">Delete</a>';
@@ -54,7 +55,7 @@ class BrandController extends Controller
 
         $brand->brand_image = $request->brand_image;
         $brand->brand_name = $request->brand_name;
-        $brand->brand_slug = $request->brand_slug;
+        $brand->brand_slug = Str::slug($request->brand_name) . uniqid();
 
         // single image upload
 
@@ -97,16 +98,17 @@ class BrandController extends Controller
     public function update(Request $request, Brand $brand)
     {
 
-        $request->validate(
-            [
-                'brand_name' => 'string',
-                'brand_slug' => 'required',
-            ]
-        );
+
+        // $request->validate(
+        //     [
+        //         'brand_name' => 'string',
+        //         'brand_slug' => 'required',
+        //     ]
+        // );
 
         $brand->brand_image = $request->brand_image;
         $brand->brand_name = $request->brand_name;
-        $brand->brand_slug = $request->brand_slug;
+        $brand->brand_slug = Str::slug($request->brand_name) . uniqid();
 
         // single image upload
 
