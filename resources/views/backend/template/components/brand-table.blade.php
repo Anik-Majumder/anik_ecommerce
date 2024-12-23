@@ -225,7 +225,7 @@
                                 ></button>
                             </div>
                             <div class="modal-body">
-                                <!-- start add modal form-->
+                                <!-- start edit modal form-->
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card">
@@ -273,7 +273,7 @@
                                                                     <input
                                                                         name="brand_slug"
                                                                         class="form-control"
-                                                                        type="number"
+                                                                        type="text"
                                                                         id="brand_slug"
                                                                     />
                                                                 </div>
@@ -299,7 +299,7 @@
                                                                 alt=""
                                                                 width="40px"
                                                                 height="40px"
-                                                                id="profile_img"
+                                                                id="brand_image"
                                                             />
                                                         </div>
                                                     </div>
@@ -383,7 +383,7 @@
         ],
     });
 
-    // add adminn
+    // add brand
 
     $("#brandAddForm").submit(function (e) {
         e.preventDefault();
@@ -406,7 +406,7 @@
         });
     });
 
-    // read admin
+    // read brand
 
     $(document).on("click", ".edit-btn", function () {
         let id = $(this).data("id");
@@ -415,7 +415,7 @@
         // $('#id').val(id);
 
         $.ajax({
-            url: "{{ url('admins') }}/" + id + "/edit",
+            url: "{{ url('brands') }}/" + id + "/edit",
             type: "GET",
             data: {
                 id: id,
@@ -424,11 +424,9 @@
             contentType: false,
             success: function (res) {
                 $("#edit_id").val(res.data.id);
-                $("#profile_img").attr("src", res.data.profile_img);
-                $("#name").val(res.data.name);
-                $("#email").val(res.data.email);
-                $("#phone").val(res.data.phone);
-                $("#password").val(res.data.password);
+                $("#brand_image").attr("src", res.data.brand_image);
+                $("#brand_name").val(res.data.brand_name);
+                $("#brand_slug").val(res.data.brand_slug);
             },
             error: function (err) {
                 console.log(err);
@@ -436,14 +434,14 @@
         });
     });
 
-    // update admin
+    // update BRAND
 
-    $("#adminFormUpdate").submit(function (e) {
+    $("#brandFormUpdate").submit(function (e) {
         e.preventDefault();
         let id = $("#edit_id").val();
 
         $.ajax({
-            url: "{{ url('admins') }}/" + id,
+            url: "{{ url('brands') }}/" + id,
             type: "POST",
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -454,9 +452,9 @@
             success: function (res) {
                 console.log("success");
 
-                $("#adminFormUpdate")[0].reset();
+                $("#brandFormUpdate")[0].reset();
                 $("#editModal").modal("hide");
-                adminTable.ajax.reload();
+                brandTable.ajax.reload();
             },
             error: function (err) {
                 console.log(err);
@@ -464,14 +462,14 @@
         });
     });
 
-    // Delete admin
+    // Delete brand
 
-    $(document).on("click", "#deleteAdminBtn", function () {
+    $(document).on("click", "#deleteBrandBtn", function () {
         let id = $(this).data("id");
         console.log(id);
 
         $.ajax({
-            url: "{{ url('admins') }}/" + id,
+            url: "{{ url('brands') }}/" + id,
             data: {
                 _token: token,
             },
@@ -480,7 +478,7 @@
             //     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             // },
             success: function (res) {
-                adminTable.ajax.reload();
+                brandTable.ajax.reload();
                 console.log("success");
             },
             eror: function (err) {

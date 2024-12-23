@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BasicinfoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -60,6 +61,12 @@ Route::get('/get-brands-data', [BrandController::class, 'getBrandsData'])->name(
 
 Route::resource('/brands', BrandController::class)->names('brand');
 
+
+//basicinfo routes
+
+Route::get('/get-basicinfo-data', [BasicinfoController::class, 'getBasicinfosData'])->name('get-basicinfo-data');
+
+Route::resource('/basicinfos', BasicinfoController::class)->names('basicinfo');
 
 
 
