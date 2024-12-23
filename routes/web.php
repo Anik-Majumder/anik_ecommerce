@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BasicinfoController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\BasicinfoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -74,6 +74,12 @@ Route::resource('/basicinfos', BasicinfoController::class)->names('basicinfo');
 Route::get('/get-basicinfo-data', [BasicinfoController::class, 'getBasicinfosData'])->name('get-basicinfo-data');
 
 Route::resource('/basicinfos', BasicinfoController::class)->names('basicinfo');
+
+//banner routes
+
+Route::get('/get-banner-data', [BannerController::class, 'getBannersData'])->name('get-banner-data');
+
+Route::resource('/banners', BannerController::class)->names('banner');
 
 
 
