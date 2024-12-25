@@ -35,11 +35,14 @@
                             <a href="{{ url('/admins') }}">
                                 <span>Admins</span>
                             </a>
+                            <a href="{{ url('/users') }}">
+                                <span>Users</span>
+                            </a>
                             <a href="{{ url('/brands') }}">
                                 <span>Brands</span>
                             </a>
                             <a href="{{ url('/basicinfos') }}">
-                                <span>Basic Info</span>
+                                <span>Basic Infos</span>
                             </a>
                             <a href="{{ url('/banners') }}">
                                 <span>Banner</span>

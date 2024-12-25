@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BannerController;
-use App\Http\Controllers\BasicinfoController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BasicinfoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -81,6 +82,10 @@ Route::get('/get-banner-data', [BannerController::class, 'getBannersData'])->nam
 
 Route::resource('/banners', BannerController::class)->names('banner');
 
+//user routes
 
+Route::get('/get-users-data', [UserController::class, 'getUsersData'])->name('get-user-data');
+
+Route::resource('/users', UserController::class)->names('user');
 
 require __DIR__ . '/auth.php';
