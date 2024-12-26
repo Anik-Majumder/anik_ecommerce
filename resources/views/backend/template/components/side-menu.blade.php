@@ -47,6 +47,9 @@
                             <a href="{{ url('/banners') }}">
                                 <span>Banner</span>
                             </a>
+                            <a href="{{ url('/sliders') }}">
+                                <span>Sliders</span>
+                            </a>
                         </li>
                     </ul>
                 </li>

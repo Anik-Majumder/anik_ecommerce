@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->char('sllider_slug');
+            $table->char('slider_slug')->nullable();
             $table->text('slider_img');
             $table->string('slider_title_1');
             $table->string('slider_title_2');

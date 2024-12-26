@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BasicinfoController;
+use App\Http\Controllers\SliderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -87,5 +88,11 @@ Route::resource('/banners', BannerController::class)->names('banner');
 Route::get('/get-users-data', [UserController::class, 'getUsersData'])->name('get-user-data');
 
 Route::resource('/users', UserController::class)->names('user');
+
+//user routes
+
+Route::get('/get-sliders-data', [SliderController::class, 'getSlidersData'])->name('get-slider-data');
+
+Route::resource('/sliders', SliderController::class)->names('slider');
 
 require __DIR__ . '/auth.php';
