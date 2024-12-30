@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class SubcategoryController extends Controller
 {
@@ -12,7 +13,21 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.template.components.subcategory-table');
+    }
+
+    public function getSubcategoryData()
+    {
+        $subcategory = Subcategory::get();
+
+        return DataTables::of($subcategory)
+            ->addColumn('action', function ($subcategory) {
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $subcategory->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                <a id="deleteSubcategoryBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $subcategory->id . '">Delete</a>';
+            })->addColumn('subcategory_image', function ($subcategory) {
+                return '<img src="' . $subcategory->subcategory_image . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+            })->rawColumns(['subcategory_image', 'action'])
+            ->make(true);
     }
 
     /**

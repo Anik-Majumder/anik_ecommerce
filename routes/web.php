@@ -7,7 +7,9 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BasicinfoController;
+use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\SubcategoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -94,5 +96,17 @@ Route::resource('/users', UserController::class)->names('user');
 Route::get('/get-sliders-data', [SliderController::class, 'getSlidersData'])->name('get-slider-data');
 
 Route::resource('/sliders', SliderController::class)->names('slider');
+
+//size routes
+
+Route::get('/get-sizes-data', [SizeController::class, 'getSizesData'])->name('get-size-data');
+
+Route::resource('/sizes', SizeController::class)->names('size');
+
+//subcategories routes
+
+// Route::get('/get-subcategories-data', [SubcategoryController::class, 'getSubcategoriesData'])->name('get-subcategory-data');
+
+// Route::resource('/subcategories', SubcategoryController::class)->names('subcategory');
 
 require __DIR__ . '/auth.php';

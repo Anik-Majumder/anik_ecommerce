@@ -50,6 +50,12 @@
                             <a href="{{ url('/sliders') }}">
                                 <span>Sliders</span>
                             </a>
+                            <a href="{{ url('/sizes') }}">
+                                <span>Sizes</span>
+                            </a>
+                            <a href="{{ url('/subcategories') }}">
+                                <span>Subcategories</span>
+                            </a>
                         </li>
                     </ul>
                 </li>
