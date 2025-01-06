@@ -56,8 +56,11 @@
                             <a href="{{ url('/colors') }}">
                                 <span>Colors</span>
                             </a>
-                            <a href="{{ url('/subcategories') }}">
-                                <span>Subcategories</span>
+                            <a href="{{ url('/customers') }}">
+                                <span>Customers</span>
+                            </a>
+                            <a href="{{ url('/blogs') }}">
+                                <span>Blogs</span>
                             </a>
                         </li>
                     </ul>

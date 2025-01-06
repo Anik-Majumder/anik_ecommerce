@@ -8,6 +8,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BasicinfoController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubcategoryController;
@@ -109,6 +110,12 @@ Route::resource('/sizes', SizeController::class)->names('size');
 Route::get('/get-colors-data', [ColorController::class, 'getColorsData'])->name('get-color-data');
 
 Route::resource('/colors', ColorController::class)->names('color');
+
+//Customers routes
+
+Route::get('/get-customers-data', [CustomerController::class, 'getCustomersData'])->name('get-customer-data');
+
+Route::resource('/customers', CustomerController::class)->names('customer');
 
 //subcategories routes
 
