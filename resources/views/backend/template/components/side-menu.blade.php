@@ -53,6 +53,9 @@
                             <a href="{{ url('/sizes') }}">
                                 <span>Sizes</span>
                             </a>
+                            <a href="{{ url('/colors') }}">
+                                <span>Colors</span>
+                            </a>
                             <a href="{{ url('/subcategories') }}">
                                 <span>Subcategories</span>
                             </a>
