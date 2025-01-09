@@ -62,6 +62,9 @@
                             <a href="{{ url('/blogs') }}">
                                 <span>Blogs</span>
                             </a>
+                            <a href="{{ url('/categories') }}">
+                                <span>Categories</span>
+                            </a>
                         </li>
                     </ul>
                 </li>

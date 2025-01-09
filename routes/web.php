@@ -8,6 +8,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BasicinfoController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SizeController;
@@ -123,6 +124,12 @@ Route::resource('/customers', CustomerController::class)->names('customer');
 Route::get('/get-blogs-data', [BlogController::class, 'getBlogsData'])->name('get-blog-data');
 
 Route::resource('/blogs', BlogController::class)->names('blog');
+
+//category routes
+
+Route::get('/get-categories-data', [CategoryController::class, 'getCategoriesData'])->name('get-category-data');
+
+Route::resource('/categories', CategoryController::class)->names('category');
 
 //subcategories routes
 
