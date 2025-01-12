@@ -131,10 +131,10 @@ Route::get('/get-categories-data', [CategoryController::class, 'getCategoriesDat
 
 Route::resource('/categories', CategoryController::class)->names('category');
 
-//subcategories routes
+// subcategories routes
 
-// Route::get('/get-subcategories-data', [SubcategoryController::class, 'getSubcategoriesData'])->name('get-subcategory-data');
+Route::get('/get-subcategories-data', [SubcategoryController::class, 'getSubcategoriesData'])->name('get-subcategory-data');
 
-// Route::resource('/subcategories', SubcategoryController::class)->names('subcategory');
+Route::resource('/subcategories', SubcategoryController::class)->names('subcategory');
 
 require __DIR__ . '/auth.php';

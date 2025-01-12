@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subcategory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -16,7 +17,7 @@ class SubcategoryController extends Controller
         return view('backend.template.components.subcategory-table');
     }
 
-    public function getSubcategoryData()
+    public function getSubcategoriesData()
     {
         $subcategory = Subcategory::get();
 
@@ -43,7 +44,37 @@ class SubcategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'subcategory_name' => ['required', 'string'],
+                'subcategory_slug' => 'string',
+            ]
+        );
+
+        $subcategory = new Subcategory();
+
+        $subcategory->category_id = $request->category_id;
+        $subcategory->subcategory_image = $request->subcategory_image;
+        $subcategory->subcategory_name = $request->subcategory_name;
+        $subcategory->subcategory_slug = Str::slug($request->subcategory_name) . uniqid();
+
+        // single image upload
+
+        if ($request->hasFile('subcategory_image')) {
+            $subcategory_image = $request->file('subcategory_image');
+            $img = uniqid() . '.' . time() . '.' . $subcategory_image->getClientOriginalExtension();
+            $subcategory_image->move(public_path('images/subcategories/'), $img);
+            $subcategory->subcategory_image = 'images/subcategories/' . $img;
+        }
+        // single image upload end
+
+        $check = $subcategory->save();
+
+        if ($check) {
+            return response()->json(['message' => 'success', 'data' => $subcategory], 200);
+        }
+
+        return response()->json(['message' => 'failed', 'data' => ''], 400);
     }
 
     /**
@@ -59,7 +90,7 @@ class SubcategoryController extends Controller
      */
     public function edit(Subcategory $subcategory)
     {
-        //
+        return response()->json(['message' => 'success', 'data' => $subcategory], 200);
     }
 
     /**
@@ -67,7 +98,28 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, Subcategory $subcategory)
     {
-        //
+        $subcategory->category_id = $request->category_id;
+        $subcategory->subcategory_image = $request->subcategory_image;
+        $subcategory->subcategory_name = $request->subcategory_name;
+        $subcategory->subcategory_slug = Str::slug($request->subcategory_name) . uniqid();
+
+        // single image upload
+
+        if ($request->hasFile('subcategory_image')) {
+            $subcategory_image = $request->file('subcategory_image');
+            $img = uniqid() . '.' . time() . '.' . $subcategory_image->getClientOriginalExtension();
+            $subcategory_image->move(public_path('images/subcategories/'), $img);
+            $subcategory->subcategory_image = 'images/subcategories/' . $img;
+        }
+        // single image upload end
+
+        $check = $subcategory->save();
+
+        if ($check) {
+            return response()->json(['message' => 'success', 'data' => $subcategory], 200);
+        }
+
+        return response()->json(['message' => 'failed', 'data' => ''], 400);
     }
 
     /**
@@ -75,6 +127,8 @@ class SubcategoryController extends Controller
      */
     public function destroy(Subcategory $subcategory)
     {
-        //
+        $subcategory->delete();
+
+        return response()->json(['message' => 'success', 'data' => ''], 200);
     }
 }

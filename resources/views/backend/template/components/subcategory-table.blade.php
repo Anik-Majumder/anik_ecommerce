@@ -16,7 +16,7 @@
                                 <a href="javascript: void(0);">Tables</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                Subcategories
+                                Sub-Categories
                             </li>
                         </ol>
                     </div>
@@ -38,7 +38,7 @@
                                 data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop"
                             >
-                                Add Subcategory
+                                Add Sub-Categories
                             </button>
                         </div>
                         <!-- Satic modal button end-->
@@ -54,9 +54,10 @@
                             <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Subcategory Image</th>
-                                    <th>Subcategory Name</th>
-                                    <th>Subcategory Slug</th>
+                                    <th>Category ID</th>
+                                    <th>Sub-Category Image</th>
+                                    <th>Sub-Category Name</th>
+                                    <th>Sub-Category Slug</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -88,7 +89,7 @@
                                     class="modal-title"
                                     id="staticBackdropLabel"
                                 >
-                                    Add Brand
+                                    Add Sub-Category
                                 </h5>
                                 <button
                                     type="button"
@@ -104,7 +105,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <form
-                                                    id="brandAddForm"
+                                                    id="subcategoryAddForm"
                                                     class="needs-validation"
                                                     novalidate
                                                 >
@@ -115,11 +116,30 @@
                                                                 <label
                                                                     class="form-label"
                                                                     for="validationCustom01"
-                                                                    >Brand
+                                                                    >Category
+                                                                    Id</label
+                                                                >
+                                                                <input
+                                                                    name="category_id"
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="validationCustom01"
+                                                                    required
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    class="form-label"
+                                                                    for="validationCustom01"
+                                                                    >Sub-Category
                                                                     Name</label
                                                                 >
                                                                 <input
-                                                                    name="brand_name"
+                                                                    name="subcategory_name"
                                                                     type="text"
                                                                     class="form-control"
                                                                     id="validationCustom01"
@@ -134,28 +154,29 @@
                                                                 <label
                                                                     for="example-email-input"
                                                                     class="form-label"
-                                                                    >Brand
+                                                                    >Sub-Category
                                                                     Slug</label
                                                                 >
                                                                 <input
-                                                                    name="brand_slug"
+                                                                    name="subcategory_name"
                                                                     class="form-control"
-                                                                    type="email"
+                                                                    type="text"
                                                                     id="example-email-input"
                                                                 />
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="mb-3">
+                                                        <div class="mb-12">
                                                             <label
                                                                 class="input-group-text"
                                                                 for="inputGroupFile02"
-                                                                >Upload Brand
+                                                                >Upload
+                                                                Sub-Category
                                                                 Image</label
                                                             >
                                                             <input
-                                                                name="brand_image"
+                                                                name="subcategory_image"
                                                                 type="file"
                                                                 class="form-control"
                                                                 id="inputGroupFile02"
@@ -217,7 +238,7 @@
                                     class="modal-title"
                                     id="staticBackdropLabel"
                                 >
-                                    Edit Brand
+                                    Edit Sub-Category
                                 </h5>
                                 <button
                                     type="button"
@@ -233,7 +254,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <form
-                                                    id="brandFormUpdate"
+                                                    id="subcategoryFormUpdate"
                                                     class="needs-validation"
                                                     novalidate
                                                 >
@@ -249,14 +270,14 @@
                                                                 <label
                                                                     class="form-label"
                                                                     for="validationCustom01"
-                                                                    >Brand
-                                                                    Name</label
+                                                                    >Category
+                                                                    Id</label
                                                                 >
                                                                 <input
-                                                                    name="brand_name"
+                                                                    name="category_id"
                                                                     type="text"
                                                                     class="form-control"
-                                                                    id="brand_name"
+                                                                    id="category_id"
                                                                     required
                                                                 />
                                                             </div>
@@ -266,42 +287,60 @@
                                                         <div class="col-md-12">
                                                             <div class="mb-3">
                                                                 <label
-                                                                    for="example-tel-input"
-                                                                    class="col-form-label"
-                                                                    >Brand
-                                                                    Slug</label
+                                                                    class="form-label"
+                                                                    for="validationCustom01"
+                                                                    >Sub-Category
+                                                                    Name</label
                                                                 >
-                                                                <div class="">
-                                                                    <input
-                                                                        name="brand_slug"
-                                                                        class="form-control"
-                                                                        type="text"
-                                                                        id="brand_slug"
-                                                                    />
-                                                                </div>
+                                                                <input
+                                                                    name="subcategory_name"
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="subcategory_name"
+                                                                    required
+                                                                />
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="mb-3">
+                                                        <div class="col-md-12">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="example-email-input"
+                                                                    class="form-label"
+                                                                    >Sub-Category
+                                                                    Slug</label
+                                                                >
+                                                                <input
+                                                                    name="subcategory_slug"
+                                                                    class="form-control"
+                                                                    type="text"
+                                                                    id="subcategory_slug"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="mb-12">
                                                             <label
                                                                 class="input-group-text"
                                                                 for="inputGroupFile02"
-                                                                >Brand
+                                                                >Upload
+                                                                Sub-Category
                                                                 Image</label
                                                             >
                                                             <input
-                                                                name="brand_image"
+                                                                name="subcategory_image"
                                                                 type="file"
                                                                 class="form-control"
-                                                                id=""
+                                                                id="inputGroupFile02"
                                                             />
                                                             <img
                                                                 src=""
                                                                 alt=""
                                                                 width="40px"
                                                                 height="40px"
-                                                                id="brand_image"
+                                                                id="subcategory_image"
                                                             />
                                                         </div>
                                                     </div>
@@ -368,6 +407,9 @@
                 data: "id",
             },
             {
+                data: "category_id",
+            },
+            {
                 data: "subcategory_image",
             },
             {
@@ -385,12 +427,12 @@
         ],
     });
 
-    // add brand
+    // add sub-category
 
-    $("#brandAddForm").submit(function (e) {
+    $("#subcategoryAddForm").submit(function (e) {
         e.preventDefault();
         $.ajax({
-            url: "{{ route('brand.store') }}",
+            url: "{{ route('subcategory.store') }}",
             type: "POST",
             data: new FormData(this),
             processData: false,
@@ -398,9 +440,9 @@
             success: function (res) {
                 console.log("success");
 
-                $("#brandAddForm")[0].reset();
+                $("#subcategoryAddForm")[0].reset();
                 $(".addModal").modal("hide");
-                brandTable.ajax.reload();
+                subcategoryTable.ajax.reload();
             },
             error: function (err) {
                 console.log(err);
@@ -408,7 +450,7 @@
         });
     });
 
-    // read brand
+    // read subcategory
 
     $(document).on("click", ".edit-btn", function () {
         let id = $(this).data("id");
@@ -417,7 +459,7 @@
         // $('#id').val(id);
 
         $.ajax({
-            url: "{{ url('brands') }}/" + id + "/edit",
+            url: "{{ url('subcategories') }}/" + id + "/edit",
             type: "GET",
             data: {
                 id: id,
@@ -426,9 +468,10 @@
             contentType: false,
             success: function (res) {
                 $("#edit_id").val(res.data.id);
-                $("#brand_image").attr("src", res.data.brand_image);
-                $("#brand_name").val(res.data.brand_name);
-                $("#brand_slug").val(res.data.brand_slug);
+                $("#subcategory_image").attr("src", res.data.subcategory_image);
+                $("#category_id").val(res.data.category_id);
+                $("#subcategory_name").val(res.data.subcategory_name);
+                $("#subcategory_slug").val(res.data.subcategory_slug);
             },
             error: function (err) {
                 console.log(err);
@@ -436,14 +479,14 @@
         });
     });
 
-    // update BRAND
+    // update subcategory
 
-    $("#brandFormUpdate").submit(function (e) {
+    $("#subcategoryFormUpdate").submit(function (e) {
         e.preventDefault();
         let id = $("#edit_id").val();
 
         $.ajax({
-            url: "{{ url('brands') }}/" + id,
+            url: "{{ url('subcategories') }}/" + id,
             type: "POST",
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -454,9 +497,9 @@
             success: function (res) {
                 console.log("success");
 
-                $("#brandFormUpdate")[0].reset();
+                $("#subcategoryFormUpdate")[0].reset();
                 $("#editModal").modal("hide");
-                brandTable.ajax.reload();
+                subcategoryTable.ajax.reload();
             },
             error: function (err) {
                 console.log(err);
@@ -464,14 +507,14 @@
         });
     });
 
-    // Delete brand
+    // Delete subcategory
 
-    $(document).on("click", "#deleteBrandBtn", function () {
+    $(document).on("click", "#deleteSubcategoryBtn", function () {
         let id = $(this).data("id");
         console.log(id);
 
         $.ajax({
-            url: "{{ url('brands') }}/" + id,
+            url: "{{ url('subcategories') }}/" + id,
             data: {
                 _token: token,
             },
@@ -480,7 +523,7 @@
             //     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             // },
             success: function (res) {
-                brandTable.ajax.reload();
+                subcategoryTable.ajax.reload();
                 console.log("success");
             },
             eror: function (err) {
