@@ -7,16 +7,21 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BasicinfoController;
+use App\Http\Controllers\BlogCommentController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubcategoryController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/test', function () {
+    return view('test');
 });
 
 Route::get('/user/dashboard', function () {
@@ -136,5 +141,19 @@ Route::resource('/categories', CategoryController::class)->names('category');
 Route::get('/get-subcategories-data', [SubcategoryController::class, 'getSubcategoriesData'])->name('get-subcategory-data');
 
 Route::resource('/subcategories', SubcategoryController::class)->names('subcategory');
+
+// blog comment routes
+
+Route::get('/get-blogcomments-data', [BlogCommentController::class, 'getBlogcommentsData'])->name('get-blogcomment-data');
+
+Route::resource('/blogcomments', BlogCommentController::class)->names('blogcomment');
+
+// blog comment routes
+
+Route::get('/get-products-data', [ProductController::class, 'getProductsData'])->name('get-product-data');
+
+Route::resource('/products', ProductController::class)->names('product');
+
+
 
 require __DIR__ . '/auth.php';

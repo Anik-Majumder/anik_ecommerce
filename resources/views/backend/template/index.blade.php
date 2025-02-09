@@ -10,6 +10,7 @@
             name="description"
         />
         <meta content="Themesbrand" name="author" />
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico" />
 

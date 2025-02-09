@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
@@ -12,7 +14,21 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.template.components.product-table');
+    }
+
+    public function getProductsData()
+    {
+        $product = Product::get();
+
+        return DataTables::of($product)
+            ->addColumn('action', function ($product) {
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $product->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                <a id="deleteProductBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $product->id . '">Delete</a>';
+            })->addColumn('product_img', function ($product) {
+                return '<img src="' . $product->product_img . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+            })->rawColumns(['product_img', 'action'])
+            ->make(true);
     }
 
     /**
@@ -28,7 +44,37 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+
+        $product->category_id = $request->category_id;
+        $product->subcategory_id = $request->subcategory_id;
+        $product->brand_id = $request->brand_id;
+        $product->product_img = $request->product_img;
+        $product->product_name = $request->product_name;
+        $product->product_qty = $request->product_qty;
+        $product->product_new_price = $request->product_new_price;
+        $product->product_old_price = $request->product_old_price;
+        $product->product_short_desc = $request->product_short_desc;
+        $product->product_long_desc = $request->product_long_desc;
+
+        // single image upload
+
+        if ($request->hasFile('product_img')) {
+            $product_img = $request->file('product_img');
+            $img = uniqid() . '.' . time() . '.' . $product_img->getClientOriginalExtension();
+            $product_img->move(public_path('images/product/'), $img);
+            $product->product_img = 'images/product/' . $img;
+        }
+
+        // single image upload end
+
+        $check = $product->save();
+
+        if ($check) {
+            return response()->json(['message' => 'success', 'data' => $product], 200);
+        }
+
+        return response()->json(['message' => 'failed', 'data' => ''], 400);
     }
 
     /**
@@ -44,7 +90,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return response()->json(['message' => 'success', 'data' => $product], 200);
     }
 
     /**
@@ -52,7 +98,35 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->category_id = $request->category_id;
+        $product->subcategory_id = $request->subcategory_id;
+        $product->brand_id = $request->brand_id;
+        $product->product_img = $request->product_img;
+        $product->product_name = $request->product_name;
+        $product->product_qty = $request->product_qty;
+        $product->product_new_price = $request->product_new_price;
+        $product->product_old_price = $request->product_old_price;
+        $product->product_short_desc = $request->product_short_desc;
+        $product->product_long_desc = $request->product_long_desc;
+
+        // single image upload
+
+        if ($request->hasFile('product_img')) {
+            $product_img = $request->file('product_img');
+            $img = uniqid() . '.' . time() . '.' . $product_img->getClientOriginalExtension();
+            $product_img->move(public_path('images/product/'), $img);
+            $product->product_img = 'images/product/' . $img;
+        }
+
+        // single image upload end
+
+        $check = $product->save();
+
+        if ($check) {
+            return response()->json(['message' => 'success', 'data' => $product], 200);
+        }
+
+        return response()->json(['message' => 'failed', 'data' => ''], 400);
     }
 
     /**
@@ -60,6 +134,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return response()->json(['message' => 'success', 'data' => ''], 200);
     }
 }

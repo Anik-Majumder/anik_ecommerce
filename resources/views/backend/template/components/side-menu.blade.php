@@ -41,6 +41,15 @@
                             <a href="{{ url('/brands') }}">
                                 <span>Brands</span>
                             </a>
+                            <a href="{{ url('/categories') }}">
+                                <span>Categories</span>
+                            </a>
+                            <a href="{{ url('/subcategories') }}">
+                                <span>Sub Categories</span>
+                            </a>
+                            <a href="{{ url('/products') }}">
+                                <span>Products</span>
+                            </a>
                             <a href="{{ url('/basicinfos') }}">
                                 <span>Basic Infos</span>
                             </a>
@@ -62,12 +71,12 @@
                             <a href="{{ url('/blogs') }}">
                                 <span>Blogs</span>
                             </a>
-                            <a href="{{ url('/categories') }}">
-                                <span>Categories</span>
+                            <a href="{{ url('/test') }}">
+                                <span>test</span>
                             </a>
-                            <a href="{{ url('/subcategories') }}">
-                                <span>Sub Categories</span>
-                            </a>
+                            <!-- <a href="{{ url('/blogcomments') }}">
+                                <span>Blog Comments</span>
+                            </a> -->
                         </li>
                     </ul>
                 </li>
