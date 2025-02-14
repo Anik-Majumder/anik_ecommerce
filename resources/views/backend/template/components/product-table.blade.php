@@ -58,6 +58,8 @@
                                     <th>Brand Id</th>
                                     <th>Product Name</th>
                                     <th>Product Qty</th>
+                                    <th>Product Size</th>
+                                    <th>Product Weight</th>
                                     <th>Product New Price</th>
                                     <th>Product Old Price</th>
                                     <th>Product Short Desc</th>
@@ -207,6 +209,40 @@
                                                                 <label
                                                                     for="example-email-input"
                                                                     class="form-label"
+                                                                    >Product
+                                                                    Size</label
+                                                                >
+                                                                <input
+                                                                    name="product_size"
+                                                                    class="form-control"
+                                                                    type="text"
+                                                                    id=""
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="example-email-input"
+                                                                    class="form-label"
+                                                                    >Product
+                                                                    Weight</label
+                                                                >
+                                                                <input
+                                                                    name="product_weight"
+                                                                    class="form-control"
+                                                                    type="text"
+                                                                    id=""
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="example-email-input"
+                                                                    class="form-label"
                                                                     >Product New
                                                                     Price</label
                                                                 >
@@ -284,13 +320,14 @@
                                                                     for="inputGroupFile02"
                                                                     >Upload
                                                                     Product
-                                                                    Image</label
+                                                                    Images</label
                                                                 >
                                                                 <input
-                                                                    name="product_img"
+                                                                    name="product_imgs[]"
                                                                     type="file"
                                                                     class="form-control"
                                                                     id="inputGroupFile02"
+                                                                    multiple
                                                                 />
                                                             </div>
                                                         </div>
@@ -470,6 +507,40 @@
                                                                 <label
                                                                     for="example-email-input"
                                                                     class="form-label"
+                                                                    >Product
+                                                                    Size</label
+                                                                >
+                                                                <input
+                                                                    name="product_size"
+                                                                    class="form-control"
+                                                                    type="text"
+                                                                    id="product_size"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="example-email-input"
+                                                                    class="form-label"
+                                                                    >Product
+                                                                    Weight</label
+                                                                >
+                                                                <input
+                                                                    name="product_weight"
+                                                                    class="form-control"
+                                                                    type="text"
+                                                                    id="product_weight"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="example-email-input"
+                                                                    class="form-label"
                                                                     >Product New
                                                                     Price</label
                                                                 >
@@ -547,10 +618,10 @@
                                                                     for="inputGroupFile02"
                                                                     >Upload
                                                                     Product
-                                                                    Image</label
+                                                                    Images</label
                                                                 >
                                                                 <input
-                                                                    name="product_img"
+                                                                    name="product_imgs[]"
                                                                     type="file"
                                                                     class="form-control"
                                                                     id="inputGroupFile02"
@@ -629,7 +700,7 @@
                 data: "id",
             },
             {
-                data: "product_img",
+                data: "product_imgs",
             },
             {
                 data: "category_id",
@@ -645,6 +716,12 @@
             },
             {
                 data: "product_qty",
+            },
+            {
+                data: "product_size",
+            },
+            {
+                data: "product_weight",
             },
             {
                 data: "product_new_price",
@@ -708,12 +785,14 @@
             contentType: false,
             success: function (res) {
                 $("#edit_id").val(res.data.id);
-                $("#product_img").attr("src", res.data.product_img);
+                $("#product_imgs").attr("src", res.data.product_imgs);
                 $("#category_id").val(res.data.category_id);
                 $("#subcategory_id").val(res.data.subcategory_id);
                 $("#brand_id").val(res.data.brand_id);
                 $("#product_name").val(res.data.product_name);
                 $("#product_qty").val(res.data.product_qty);
+                $("#product_size").val(res.data.product_size);
+                $("#product_weight").val(res.data.product_weight);
                 $("#product_new_price").val(res.data.product_new_price);
                 $("#product_old_price").val(res.data.product_old_price);
                 $("#product_short_desc").val(res.data.product_short_desc);

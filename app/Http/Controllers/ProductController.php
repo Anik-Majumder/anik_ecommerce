@@ -25,9 +25,9 @@ class ProductController extends Controller
             ->addColumn('action', function ($product) {
                 return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $product->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
                 <a id="deleteProductBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $product->id . '">Delete</a>';
-            })->addColumn('product_img', function ($product) {
-                return '<img src="' . $product->product_img . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
-            })->rawColumns(['product_img', 'action'])
+            })->addColumn('product_imgs', function ($product) {
+                return '<img src="' . $product->product_imgs . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+            })->rawColumns(['product_imgs', 'action'])
             ->make(true);
     }
 
@@ -49,24 +49,33 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->subcategory_id = $request->subcategory_id;
         $product->brand_id = $request->brand_id;
-        $product->product_img = $request->product_img;
+        $product->product_imgs = $request->product_imgs;
         $product->product_name = $request->product_name;
         $product->product_qty = $request->product_qty;
+        $product->product_size = $request->product_size;
+        $product->product_weight = $request->product_weight;
         $product->product_new_price = $request->product_new_price;
         $product->product_old_price = $request->product_old_price;
         $product->product_short_desc = $request->product_short_desc;
         $product->product_long_desc = $request->product_long_desc;
 
-        // single image upload
+        // multiple image upload
 
-        if ($request->hasFile('product_img')) {
-            $product_img = $request->file('product_img');
-            $img = uniqid() . '.' . time() . '.' . $product_img->getClientOriginalExtension();
-            $product_img->move(public_path('images/product/'), $img);
-            $product->product_img = 'images/product/' . $img;
+        if ($request->hasFile('product_imgs')) {
+
+            $multipleImg = [];
+            $product_imgs = $request->file('product_imgs');
+
+            foreach ($product_imgs as $product_img) {
+                $img = uniqid() . '.' . time() . '.' . $product_img->getClientOriginalExtension();
+                $product_img->move(public_path('images/product/'), $img);
+                $multipleImg[] = 'images/product/' . $img;
+            }
+
+            $product->product_imgs = json_encode($multipleImg);
         }
 
-        // single image upload end
+        // multiple image upload end
 
         $check = $product->save();
 
@@ -101,24 +110,33 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->subcategory_id = $request->subcategory_id;
         $product->brand_id = $request->brand_id;
-        $product->product_img = $request->product_img;
+        $product->product_imgs = $request->product_imgs;
         $product->product_name = $request->product_name;
         $product->product_qty = $request->product_qty;
+        $product->product_size = $request->product_size;
+        $product->product_weight = $request->product_weight;
         $product->product_new_price = $request->product_new_price;
         $product->product_old_price = $request->product_old_price;
         $product->product_short_desc = $request->product_short_desc;
         $product->product_long_desc = $request->product_long_desc;
 
-        // single image upload
+        // multiple image upload
 
-        if ($request->hasFile('product_img')) {
-            $product_img = $request->file('product_img');
-            $img = uniqid() . '.' . time() . '.' . $product_img->getClientOriginalExtension();
-            $product_img->move(public_path('images/product/'), $img);
-            $product->product_img = 'images/product/' . $img;
+        if ($request->hasFile('product_imgs')) {
+
+            $multipleImg = [];
+            $product_imgs = $request->file('product_imgs');
+
+            foreach ($product_imgs as $product_img) {
+                $img = uniqid() . '.' . time() . '.' . $product_img->getClientOriginalExtension();
+                $product_img->move(public_path('images/product/'), $img);
+                $multipleImg[] = 'images/product/' . $img;
+            }
+
+            $product->product_imgs = json_encode($multipleImg);
         }
 
-        // single image upload end
+        // multiple image upload end
 
         $check = $product->save();
 

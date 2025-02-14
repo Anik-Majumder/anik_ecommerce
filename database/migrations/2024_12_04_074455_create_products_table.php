@@ -15,13 +15,15 @@ return new class extends Migration {
             $table->foreignId('category_id')->constrained();
             $table->foreignId('subcategory_id')->constrained();
             $table->foreignId('brand_id')->constrained();
-            $table->text('product_img');
+            $table->text('product_imgs');
             $table->char('product_name');
             $table->integer('product_new_price');
             $table->integer('product_old_price');
             $table->text('product_short_desc');
             $table->text('product_long_desc');
             $table->integer('product_qty');
+            $table->integer('product_size');
+            $table->integer('product_weight');
             $table->timestamps();
         });
     }
