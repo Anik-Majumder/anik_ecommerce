@@ -129,6 +129,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="mb-3">
@@ -280,6 +281,39 @@
                                                                     id="category_id"
                                                                     required
                                                                 />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="category_id"
+                                                                    >Category</label
+                                                                >
+                                                                <select
+                                                                    name="category_id"
+                                                                    id="category_id"
+                                                                    class="form-control"
+                                                                    required
+                                                                >
+                                                                    <option
+                                                                        value=""
+                                                                    >
+                                                                        Select
+                                                                        Category
+                                                                        Id
+                                                                    </option>
+                                                                    @forelse($categories
+                                                                    as
+                                                                    $category)
+                                                                    <option
+                                                                        value="{{ $category->id }}"
+                                                                    >
+                                                                        {{ $category->name }}
+                                                                    </option>
+                                                                    @endforelse
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>

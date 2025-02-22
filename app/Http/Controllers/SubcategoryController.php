@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.subcategory-table');
+        $categories = Category::all();
+        return view('backend.template.components.subcategory-table', compact('categories'));
     }
 
     public function getSubcategoriesData()
@@ -36,7 +38,7 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
