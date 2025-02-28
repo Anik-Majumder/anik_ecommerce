@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use view;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Support\Str;

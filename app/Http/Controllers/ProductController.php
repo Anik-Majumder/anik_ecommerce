@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -14,7 +17,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.product-table');
+        $categories = Category::all();
+        $subcategories = Subcategory::all();
+        $brands = Brand::all();
+        return view('backend.template.components.product-table', compact('categories','subcategories', 'brands'));
     }
 
     public function getProductsData()

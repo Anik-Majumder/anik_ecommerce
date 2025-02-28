@@ -119,53 +119,63 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="mb-3">
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="validationCustom01"
-                                                                    >Category
-                                                                    Id</label
-                                                                >
-                                                                <input
+                                                                <label for="category_id">
+                                                                    Category
+                                                                </label>
+                                                                <select
                                                                     name="category_id"
-                                                                    type="text"
+                                                                    id="category_id"
                                                                     class="form-control"
-                                                                    id="validationCustom01"
-                                                                    required
-                                                                />
+                                                                    required >
+                                                                    @foreach($categories as $category)
+                                                                        <option value="{{ $category->id }}">
+                                                                            {{ $category->id }} - {{ $category->category_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
+                                                        
                                                         <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label
                                                                     class="form-label"
-                                                                    for="validationCustom01"
+                                                                    for="subcategory_id"
                                                                     >Sub-Category
                                                                     Id</label
                                                                 >
-                                                                <input
+                                                                <select
                                                                     name="subcategory_id"
-                                                                    type="text"
+                                                                    id="subcategory_id"
                                                                     class="form-control"
-                                                                    id="validationCustom01"
-                                                                    required
-                                                                />
+                                                                    required >
+                                                                    @foreach($subcategories as $subcategory)
+                                                                        <option value="{{ $subcategory->id }}">
+                                                                            {{ $subcategory->id }} - {{ $subcategory->subcategory_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label
                                                                     class="form-label"
-                                                                    for="validationCustom01"
+                                                                    for="brand_id"
                                                                     >Brand
                                                                     Id</label
                                                                 >
-                                                                <input
+                                                                <select
                                                                     name="brand_id"
-                                                                    type="text"
+                                                                    id="brand_id"
                                                                     class="form-control"
-                                                                    id="validationCustom01"
-                                                                    required
-                                                                />
+                                                                    required >
+                                                                    @foreach($brands as $brand)
+                                                                        <option value="{{ $brand->id }}">
+                                                                            {{ $brand->id }} - {{ $brand->brand_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -417,53 +427,63 @@
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="mb-3">
-                                                                <label
-                                                                    class="form-label"
-                                                                    for="validationCustom01"
-                                                                    >Category
-                                                                    Id</label
-                                                                >
-                                                                <input
+                                                                <label for="category_id">
+                                                                    Category
+                                                                </label>
+                                                                <select
                                                                     name="category_id"
-                                                                    type="text"
-                                                                    class="form-control"
                                                                     id="category_id"
-                                                                    required
-                                                                />
+                                                                    class="form-control"
+                                                                    required >
+                                                                    @foreach($categories as $category)
+                                                                        <option value="{{ $category->id }}">
+                                                                            {{ $category->id }} - {{ $category->category_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
+                                                        
                                                         <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label
                                                                     class="form-label"
-                                                                    for="validationCustom01"
+                                                                    for="subcategory_id"
                                                                     >Sub-Category
                                                                     Id</label
                                                                 >
-                                                                <input
+                                                                <select
                                                                     name="subcategory_id"
-                                                                    type="text"
-                                                                    class="form-control"
                                                                     id="subcategory_id"
-                                                                    required
-                                                                />
+                                                                    class="form-control"
+                                                                    required >
+                                                                    @foreach($subcategories as $subcategory)
+                                                                        <option value="{{ $subcategory->id }}">
+                                                                            {{ $subcategory->id }} - {{ $subcategory->subcategory_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label
                                                                     class="form-label"
-                                                                    for="validationCustom01"
+                                                                    for="brand_id"
                                                                     >Brand
                                                                     Id</label
                                                                 >
-                                                                <input
+                                                                <select
                                                                     name="brand_id"
-                                                                    type="text"
-                                                                    class="form-control"
                                                                     id="brand_id"
-                                                                    required
-                                                                />
+                                                                    class="form-control"
+                                                                    required >
+                                                                    @foreach($brands as $brand)
+                                                                        <option value="{{ $brand->id }}">
+                                                                            {{ $brand->id }} - {{ $brand->brand_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
