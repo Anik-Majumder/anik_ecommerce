@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
             $table->string('color_name');
-            $table->char('color_slug');
+            $table->char('color_slug')->nullable();
             $table->char('color_code');
             $table->timestamps();
         });

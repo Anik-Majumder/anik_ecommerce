@@ -23,7 +23,7 @@ class ColorController extends Controller
 
         return DataTables::of($colors)
             ->addColumn('action', function ($color) {
-                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $color->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $color->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteColorBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $color->id . '">Delete</a>';
             })->rawColumns(['action'])
             ->make(true);
@@ -45,7 +45,6 @@ class ColorController extends Controller
         $request->validate(
             [
                 'color_name' => ['required', 'string'],
-                'color_slug' => 'string',
                 'color_code' => 'string',
             ]
         );
@@ -89,7 +88,6 @@ class ColorController extends Controller
         $request->validate(
             [
                 'color_name' => ['required', 'string'],
-                'color_slug' => 'string',
                 'color_code' => 'string',
             ]
         );

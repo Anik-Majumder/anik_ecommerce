@@ -23,7 +23,7 @@ class SizeController extends Controller
 
         return DataTables::of($sizes)
             ->addColumn('action', function ($size) {
-                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $size->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $size->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteSizeBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $size->id . '">Delete</a>';
             })->rawColumns(['action'])
             ->make(true);
@@ -45,7 +45,6 @@ class SizeController extends Controller
         $request->validate(
             [
                 'size_name' => ['required', 'string'],
-                'size_slug' => 'string',
             ]
         );
 

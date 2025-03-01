@@ -110,7 +110,7 @@
                                                     novalidate
                                                 >
                                                     @csrf
-                                                    
+
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="mb-3">
@@ -150,24 +150,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Sub-Category
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="subcategory_name"
-                                                                    class="form-control"
-                                                                    type="text"
-                                                                    id="example-email-input"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="row">
                                                         <div class="mb-12">
                                                             <label
@@ -306,24 +289,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Sub-Category
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="subcategory_slug"
-                                                                    class="form-control"
-                                                                    type="text"
-                                                                    id="subcategory_slug"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="row">
                                                         <div class="mb-12">
                                                             <label

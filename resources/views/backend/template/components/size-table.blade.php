@@ -125,24 +125,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Size
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="size_slug"
-                                                                    class="form-control"
-                                                                    type="email"
-                                                                    id="example-email-input"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="modal-footer">
                                                         <button
                                                             type="button"
@@ -240,26 +223,6 @@
                                                                     id="size_name"
                                                                     required
                                                                 />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-tel-input"
-                                                                    class="col-form-label"
-                                                                    >Size
-                                                                    Slug</label
-                                                                >
-                                                                <div class="">
-                                                                    <input
-                                                                        name="size_slug"
-                                                                        class="form-control"
-                                                                        type="text"
-                                                                        id="size_slug"
-                                                                    />
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

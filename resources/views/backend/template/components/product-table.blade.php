@@ -59,6 +59,7 @@
                                     <th>Product Name</th>
                                     <th>Product Qty</th>
                                     <th>Product Size</th>
+                                    <th>Product color</th>
                                     <th>Product Weight</th>
                                     <th>Product New Price</th>
                                     <th>Product Old Price</th>
@@ -87,6 +88,7 @@
                     tabindex="-1"
                     aria-labelledby="staticBackdropLabel"
                     aria-hidden="true"
+                    style="--bs-modal-width: 1000px;"
                 >
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -120,7 +122,7 @@
                                                         <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label for="category_id">
-                                                                    Category
+                                                                    Category Id
                                                                 </label>
                                                                 <select
                                                                     name="category_id"
@@ -135,7 +137,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label
@@ -214,7 +216,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label
                                                                     for="example-email-input"
@@ -222,15 +224,20 @@
                                                                     >Product
                                                                     Size</label
                                                                 >
-                                                                <input
+                                                                <select
                                                                     name="product_size"
+                                                                    id="product_size"
                                                                     class="form-control"
-                                                                    type="text"
-                                                                    id=""
-                                                                />
+                                                                    required >
+                                                                    @foreach($sizes as $size)
+                                                                        <option value="{{ $size->id }}">
+                                                                            {{ $size->size_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label
                                                                     for="example-email-input"
@@ -244,6 +251,27 @@
                                                                     type="text"
                                                                     id=""
                                                                 />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="example-email-input"
+                                                                    class="form-label"
+                                                                    >Product
+                                                                    Color</label
+                                                                >
+                                                                <select
+                                                                    name="product_color"
+                                                                    id="product_color"
+                                                                    class="form-control"
+                                                                    required >
+                                                                    @foreach($colors as $color)
+                                                                        <option value="{{ $color->id }}">
+                                                                            {{ $color->color_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -443,7 +471,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label
@@ -522,23 +550,28 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label
                                                                     for="example-email-input"
                                                                     class="form-label"
-                                                                    >Product
+                                                                >Product
                                                                     Size</label
                                                                 >
-                                                                <input
+                                                                <select
                                                                     name="product_size"
-                                                                    class="form-control"
-                                                                    type="text"
                                                                     id="product_size"
-                                                                />
+                                                                    class="form-control"
+                                                                    required >
+                                                                    @foreach($sizes as $size)
+                                                                        <option value="{{ $size->id }}">
+                                                                            {{ $size->size_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-4">
                                                             <div class="mb-3">
                                                                 <label
                                                                     for="example-email-input"
@@ -552,6 +585,27 @@
                                                                     type="text"
                                                                     id="product_weight"
                                                                 />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="example-email-input"
+                                                                    class="form-label"
+                                                                >Product
+                                                                    Color</label
+                                                                >
+                                                                <select
+                                                                    name="product_color"
+                                                                    id="product_color"
+                                                                    class="form-control"
+                                                                    required >
+                                                                    @foreach($colors as $color)
+                                                                        <option value="{{ $color->id }}">
+                                                                            {{ $color->color_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -744,6 +798,9 @@
                 data: "product_weight",
             },
             {
+                data: "product_color",
+            },
+            {
                 data: "product_new_price",
             },
             {
@@ -813,6 +870,7 @@
                 $("#product_qty").val(res.data.product_qty);
                 $("#product_size").val(res.data.product_size);
                 $("#product_weight").val(res.data.product_weight);
+                $("#product_color").val(res.data.product_color);
                 $("#product_new_price").val(res.data.product_new_price);
                 $("#product_old_price").val(res.data.product_old_price);
                 $("#product_short_desc").val(res.data.product_short_desc);

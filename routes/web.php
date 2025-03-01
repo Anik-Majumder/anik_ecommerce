@@ -65,9 +65,9 @@ Route::middleware('is_admin')->prefix('admin')->name('admin.')->group(function (
 
 // admin routes
 
-Route::get('/get-admins-data', [AdminController::class, 'getAdminData'])->name('get-admin-data');
+Route::get('/get-admins-data', [AdminController::class, 'getAdminData'])->middleware(['auth', 'verified'])->name('get-admin-data');
 
-Route::resource('/admins', AdminController::class)->names('admin');
+Route::resource('/admins', AdminController::class)->middleware(['auth', 'verified'])->names('admin');
 
 //brand routes
 

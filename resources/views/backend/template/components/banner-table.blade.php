@@ -149,7 +149,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="mb-3">
                                                                 <label
                                                                     class="form-label"
@@ -166,7 +166,7 @@
                                                                 />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="mb-3">
                                                                 <label
                                                                     for="example-email-input"
@@ -182,22 +182,7 @@
                                                                 />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Banner
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="banner_slug"
-                                                                    class="form-control"
-                                                                    type="text"
-                                                                    id="example-email-input"
-                                                                />
-                                                            </div>
-                                                        </div>
+
                                                     </div>
 
                                                     <div class="row">
@@ -340,7 +325,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="mb-3">
                                                                 <label
                                                                     class="form-label"
@@ -357,7 +342,7 @@
                                                                 />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-6">
                                                             <div class="mb-3">
                                                                 <label
                                                                     for="example-email-input"
@@ -373,22 +358,7 @@
                                                                 />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Banner
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="banner_slug"
-                                                                    class="form-control"
-                                                                    type="text"
-                                                                    id="banner_slug"
-                                                                />
-                                                            </div>
-                                                        </div>
+
                                                     </div>
 
                                                     <div class="row">

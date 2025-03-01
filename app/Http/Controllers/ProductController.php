@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Color;
+use App\Models\Size;
 use App\Models\Subcategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -20,7 +22,9 @@ class ProductController extends Controller
         $categories = Category::all();
         $subcategories = Subcategory::all();
         $brands = Brand::all();
-        return view('backend.template.components.product-table', compact('categories','subcategories', 'brands'));
+        $colors = Color::all();
+        $sizes = Size::all();
+        return view('backend.template.components.product-table', compact('categories','subcategories', 'brands', 'colors', 'sizes'));
     }
 
     public function getProductsData()
@@ -29,10 +33,14 @@ class ProductController extends Controller
 
         return DataTables::of($product)
             ->addColumn('action', function ($product) {
-                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $product->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $product->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteProductBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $product->id . '">Delete</a>';
             })->addColumn('product_imgs', function ($product) {
-                return '<img src="' . $product->product_imgs . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                // Decode JSON to an array
+                $images = json_decode($product->product_imgs, true);
+                $firstImage = isset($images[0]) ? $images[0] : 'default.jpg'; // Fallback if empty
+
+                return '<img src="' . $firstImage . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
             })->rawColumns(['product_imgs', 'action'])
             ->make(true);
     }
@@ -59,6 +67,7 @@ class ProductController extends Controller
         $product->product_name = $request->product_name;
         $product->product_qty = $request->product_qty;
         $product->product_size = $request->product_size;
+        $product->product_color = $request->product_color;
         $product->product_weight = $request->product_weight;
         $product->product_new_price = $request->product_new_price;
         $product->product_old_price = $request->product_old_price;
@@ -120,6 +129,7 @@ class ProductController extends Controller
         $product->product_name = $request->product_name;
         $product->product_qty = $request->product_qty;
         $product->product_size = $request->product_size;
+        $product->product_color = $request->product_color;
         $product->product_weight = $request->product_weight;
         $product->product_new_price = $request->product_new_price;
         $product->product_old_price = $request->product_old_price;

@@ -181,23 +181,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Slider
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="slider_slug"
-                                                                    class="form-control"
-                                                                    type="text"
-                                                                    id="example-email-input"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div class="mb-3">
                                                                 <label
                                                                     class="input-group-text"
@@ -367,23 +351,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Slider
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="slider_slug"
-                                                                    class="form-control"
-                                                                    type="text"
-                                                                    id="slider_slug"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-12">
                                                             <div class="mb-3">
                                                                 <label
                                                                     class="input-group-text"

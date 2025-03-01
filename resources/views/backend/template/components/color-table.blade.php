@@ -126,24 +126,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Color
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="color_slug"
-                                                                    class="form-control"
-                                                                    type="text"
-                                                                    id="example-email-input"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="mb-3">
@@ -262,26 +245,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-tel-input"
-                                                                    class="col-form-label"
-                                                                    >Color
-                                                                    Slug</label
-                                                                >
-                                                                <div class="">
-                                                                    <input
-                                                                        name="color_slug"
-                                                                        class="form-control"
-                                                                        type="text"
-                                                                        id="color_slug"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="mb-3">

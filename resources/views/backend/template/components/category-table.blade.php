@@ -126,24 +126,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Category
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="category_name"
-                                                                    class="form-control"
-                                                                    type="text"
-                                                                    id="example-email-input"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="row">
                                                         <div class="mb-12">
                                                             <label
@@ -260,24 +243,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Category
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="category_slug"
-                                                                    class="form-control"
-                                                                    type="text"
-                                                                    id="category_slug"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="row">
                                                         <div class="mb-12">
                                                             <label

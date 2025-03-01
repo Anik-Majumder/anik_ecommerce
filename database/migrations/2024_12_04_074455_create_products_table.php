@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->integer('product_qty');
             $table->integer('product_size');
             $table->integer('product_weight');
+            $table->text('product_color');
             $table->timestamps();
         });
     }

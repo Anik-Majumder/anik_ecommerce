@@ -126,24 +126,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-email-input"
-                                                                    class="form-label"
-                                                                    >Brand
-                                                                    Slug</label
-                                                                >
-                                                                <input
-                                                                    name="brand_slug"
-                                                                    class="form-control"
-                                                                    type="email"
-                                                                    id="example-email-input"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="row">
                                                         <div class="mb-3">
                                                             <label
@@ -260,26 +243,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="mb-3">
-                                                                <label
-                                                                    for="example-tel-input"
-                                                                    class="col-form-label"
-                                                                    >Brand
-                                                                    Slug</label
-                                                                >
-                                                                <div class="">
-                                                                    <input
-                                                                        name="brand_slug"
-                                                                        class="form-control"
-                                                                        type="text"
-                                                                        id="brand_slug"
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                     <div class="row">
                                                         <div class="mb-3">
                                                             <label
