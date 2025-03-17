@@ -694,6 +694,18 @@
             },
             {
                 data: "short_desc",
+                render: function(data) {
+                return `<div style="
+                    white-space: normal;
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
+                    width: 200px;
+                    max-height: 80px;
+                    overflow-y: auto;
+                    border: 1px solid #ccc;
+                    padding: 4px;
+                ">${data}</div>`;
+            }
             },
             {
                 data: "address",
