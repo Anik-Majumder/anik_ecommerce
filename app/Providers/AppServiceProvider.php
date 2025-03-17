@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Admin;
 use App\Models\Banner;
 use App\Models\Basicinfo;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\View;
@@ -64,6 +65,16 @@ class AppServiceProvider extends ServiceProvider
         View::composer('frontend.components.justarrived', function ($view) {
             $view->with([
                 'products'=> Product::all(),
+            ]);
+        });
+        View::composer('frontend.components.brand', function ($view) {
+            $view->with([
+                'brands'=> Brand::all(),
+            ]);
+        });
+        View::composer('frontend.components.footer', function ($view) {
+            $view->with([
+                'basicinfos' => BasicInfo::first(),
             ]);
         });
 

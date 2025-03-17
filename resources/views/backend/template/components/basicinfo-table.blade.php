@@ -40,34 +40,37 @@
                             </button>
                         </div>
                         <!-- Satic modal button end-->
-                        <table
-                            id="basicinfoTable"
-                            class="table table-striped table-bordered dt-responsive nowrap"
-                            style="
-                                border-collapse: collapse;
-                                border-spacing: 0;
-                                width: 100%;
-                            "
-                        >
-                            <thead>
-                                <tr>
-                                    <th>SL</th>
-                                    <th>Dark Logo</th>
-                                    <th>Light Logo</th>
-                                    <th>website Name</th>
-                                    <th>Short Desc</th>
-                                    <th>Address</th>
-                                    <th>Email</th>
-                                    <th>Phone-1</th>
-                                    <th>Phone-2</th>
-                                    <th>FB Link</th>
-                                    <th>Insta Link</th>
-                                    <th>Linkdin Link</th>
-                                    <th>Youtube Link</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        <div class="table-responsive" style="max-width: 100%; overflow-x: auto;">
+                            <table
+                                id="basicinfoTable"
+                                class="table table-striped table-bordered dt-responsive nowrap"
+                                style="
+                                    border-collapse: collapse;
+                                    border-spacing: 0;
+                                    width: 100%;
+                                    white-space: nowrap;
+                                "
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>Dark Logo</th>
+                                        <th>Light Logo</th>
+                                        <th>Website Name</th>
+                                        <th>Short Desc</th>
+                                        <th>Address</th>
+                                        <th>Email</th>
+                                        <th>Phone-1</th>
+                                        <th>Phone-2</th>
+                                        <th>FB Link</th>
+                                        <th>Insta Link</th>
+                                        <th>LinkedIn Link</th>
+                                        <th>YouTube Link</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -671,7 +674,11 @@
         processing: true,
         serverSide: true,
         ajax: "{{ route('get-basicinfo-data') }}",
-
+        // ✅ Enable horizontal scrolling
+        scrollX: true,
+        autoWidth: false,
+        responsive: true,
+        
         columns: [
             {
                 data: "id",

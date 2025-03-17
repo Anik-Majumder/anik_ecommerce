@@ -43,37 +43,37 @@
                         </div>
                         <!-- Satic modal button end-->
                         <div class="table-responsive" style="max-width: 100%; overflow-x: auto;">
-                        <table
-                            id="productTable"
-                            class="table table-striped table-bordered dt-responsive nowrap"
-                            style="
-                                border-collapse: collapse;
-                                border-spacing: 0;
-                                width: 100%;
-                                white-space: nowrap;
-                            "
-                        >
-                            <thead>
-                                <tr>
-                                    <th>SL</th>
-                                    <th>Product Image</th>
-                                    <th>Category Id</th>
-                                    <th>Sub-Category Id</th>
-                                    <th>Brand Id</th>
-                                    <th>Product Name</th>
-                                    <th>Product Qty</th>
-                                    <th>Product Size</th>
-                                    <th>Product color</th>
-                                    <th>Product Weight</th>
-                                    <th>Product New Price</th>
-                                    <th>Product Old Price</th>
-                                    <th>Product Short Desc</th>
-                                    <th>Product Long Desc</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                            <table
+                                id="productTable"
+                                class="table table-striped table-bordered dt-responsive nowrap"
+                                style="
+                                    border-collapse: collapse;
+                                    border-spacing: 0;
+                                    width: 100%;
+                                    white-space: nowrap;
+                                "
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>Product Image</th>
+                                        <th>Category Id</th>
+                                        <th>Sub-Category Id</th>
+                                        <th>Brand Id</th>
+                                        <th>Product Name</th>
+                                        <th>Product Qty</th>
+                                        <th>Product Size</th>
+                                        <th>Product color</th>
+                                        <th>Product Weight</th>
+                                        <th>Product New Price</th>
+                                        <th>Product Old Price</th>
+                                        <th>Product Short Desc</th>
+                                        <th>Product Long Desc</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
