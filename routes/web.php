@@ -18,7 +18,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubcategoryController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 Route::get('/test', function () {
     return view('test');
@@ -30,7 +30,7 @@ Route::get('/user/dashboard', function () {
 
 Route::get('/admin/dashboard', function () {
     return view('admin-dashboard');
-})->middleware(['is_admin'])->name('admin.dashboard');
+})->name('admin.dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -61,7 +61,15 @@ Route::middleware('is_admin')->prefix('admin')->name('admin.')->group(function (
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 });
 
-// backend routes
+// frontend routes
+
+Route::get('/', function () {
+    return view('frontend.pages.home');
+});
+
+
+
+// // backend routes
 
 // admin routes
 

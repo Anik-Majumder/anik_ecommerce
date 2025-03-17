@@ -1,4 +1,6 @@
-@extends('backend.template.index') @section('content')
+@extends('backend.template.index') 
+
+@section('content')
 
 <div class="main-content">
     <div class="page-content">
@@ -40,6 +42,7 @@
                             </button>
                         </div>
                         <!-- Satic modal button end-->
+                        <div class="table-responsive" style="max-width: 100%; overflow-x: auto;">
                         <table
                             id="productTable"
                             class="table table-striped table-bordered dt-responsive nowrap"
@@ -47,6 +50,7 @@
                                 border-collapse: collapse;
                                 border-spacing: 0;
                                 width: 100%;
+                                white-space: nowrap;
                             "
                         >
                             <thead>
@@ -69,6 +73,7 @@
                                 </tr>
                             </thead>
                         </table>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -225,12 +230,13 @@
                                                                     Size</label
                                                                 >
                                                                 <select
-                                                                    name="product_size"
+                                                                    name="product_size[]"
                                                                     id="product_size"
                                                                     class="form-control"
-                                                                    required >
+                                                                    required
+                                                                    multiple>
                                                                     @foreach($sizes as $size)
-                                                                        <option value="{{ $size->id }}">
+                                                                        <option value="{{ $size->size_name }}">
                                                                             {{ $size->size_name }}
                                                                         </option>
                                                                     @endforeach
@@ -366,6 +372,25 @@
                                                                     class="form-control"
                                                                     id="inputGroupFile02"
                                                                     multiple
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    class="input-group-text"
+                                                                    for="inputGroupFile02"
+                                                                    >Upload
+                                                                    Thumbnail
+                                                                    Image</label
+                                                                >
+                                                                <input
+                                                                    name="product_thumb"
+                                                                    type="file"
+                                                                    class="form-control"
+                                                                    id="inputGroupFile02"
                                                                 />
                                                             </div>
                                                         </div>
@@ -559,15 +584,17 @@
                                                                     Size</label
                                                                 >
                                                                 <select
-                                                                    name="product_size"
+                                                                    name="product_size[]"
                                                                     id="product_size"
                                                                     class="form-control"
+                                                                    multiple
                                                                     required >
                                                                     @foreach($sizes as $size)
                                                                         <option value="{{ $size->id }}">
                                                                             {{ $size->size_name }}
                                                                         </option>
                                                                     @endforeach
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -710,6 +737,32 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    class="input-group-text"
+                                                                    for="inputGroupFile02"
+                                                                    >Upload
+                                                                    Thumbnail
+                                                                    Images</label
+                                                                >
+                                                                <input
+                                                                    name="product_thumb"
+                                                                    type="file"
+                                                                    class="form-control"
+                                                                    id="inputGroupFile02"
+                                                                />
+                                                                <img
+                                                                    src=""
+                                                                    alt=""
+                                                                    width="40px"
+                                                                    height="40px"
+                                                                    id="product_thumb"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="modal-footer">
                                                         <button
@@ -768,22 +821,35 @@
         processing: true,
         serverSide: true,
         ajax: "{{ route('get-product-data') }}",
+        // ✅ Enable horizontal scrolling
+        scrollX: true,
+        autoWidth: false,
+        responsive: true,
 
         columns: [
             {
                 data: "id",
             },
             {
-                data: "product_imgs",
+                data: "product_thumb",
             },
             {
-                data: "category_id",
+                data: "category",
+                render: function(data) {
+                    return data ? `${data.id} - ${data.category_name}` : 'N/A';
+                }
             },
             {
-                data: "subcategory_id",
+                data: "subcategory",
+                render: function(data) {
+                    return data ? `${data.id} - ${data.subcategory_name}` : 'N/A';
+                }
             },
             {
-                data: "brand_id",
+                data: "brand",
+                render: function(data) {
+                    return data ? `${data.id} - ${data.brand_name}` : 'N/A';
+                }
             },
             {
                 data: "product_name",
@@ -791,8 +857,21 @@
             {
                 data: "product_qty",
             },
+            // {
+            //     data: "product_size",
+            //     render: function(data) {
+            //         // Decode HTML entities before parsing the JSON
+            //         if (data) {
+            //             var parser = new DOMParser();
+            //             var decodedData = parser.parseFromString(data, 'text/html').body.textContent;  // Decode HTML entities
+            //             const sizes = JSON.parse(decodedData);  // Parse the decoded string into JSON
+            //             return sizes.join(", ");  // Join the sizes array into a comma-separated string
+            //         }
+            //         return 'N/A';  // If no sizes, return 'N/A'
+            //     }
+            // },
             {
-                data: "product_size",
+              data: 'product_size'
             },
             {
                 data: "product_weight",
@@ -819,6 +898,7 @@
                 searchable: false,
             },
         ],
+
     });
 
     // add product

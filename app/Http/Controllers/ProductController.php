@@ -29,19 +29,31 @@ class ProductController extends Controller
 
     public function getProductsData()
     {
-        $product = Product::get();
-
+        $product = Product::with(['category', 'subcategory','brand'])->get();
         return DataTables::of($product)
             ->addColumn('action', function ($product) {
                 return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $product->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteProductBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $product->id . '">Delete</a>';
-            })->addColumn('product_imgs', function ($product) {
+            })->addColumn('product_thumb', function ($product) {
                 // Decode JSON to an array
-                $images = json_decode($product->product_imgs, true);
-                $firstImage = isset($images[0]) ? $images[0] : 'default.jpg'; // Fallback if empty
+//                $images = json_decode($product->product_imgs, true);
+//                $firstImage = isset($images[0]) ? $images[0] : 'default.jpg'; // Fallback if empty
+//                return '<img src="' . $firstImage . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                return '<img src="' . $product->product_thumb . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+            })
+            ->addColumn('product_size', function ($product) {
 
-                return '<img src="' . $firstImage . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
-            })->rawColumns(['product_imgs', 'action'])
+                $html='';
+
+                foreach ( json_decode($product->product_size) as $size) {
+
+                    $html .= '<span class="badge bg-primary mx-1"> '.$size.'</span>';
+                }
+                return $html;
+
+            })
+            ->rawColumns(['product_thumb','product_size', 'action'])
+
             ->make(true);
     }
 
@@ -64,15 +76,25 @@ class ProductController extends Controller
         $product->subcategory_id = $request->subcategory_id;
         $product->brand_id = $request->brand_id;
         $product->product_imgs = $request->product_imgs;
+        $product->product_thumb = $request->product_thumb;
         $product->product_name = $request->product_name;
         $product->product_qty = $request->product_qty;
-        $product->product_size = $request->product_size;
+        $product->product_size = json_encode($request->product_size);
         $product->product_color = $request->product_color;
         $product->product_weight = $request->product_weight;
         $product->product_new_price = $request->product_new_price;
         $product->product_old_price = $request->product_old_price;
         $product->product_short_desc = $request->product_short_desc;
         $product->product_long_desc = $request->product_long_desc;
+
+        // single image upload
+
+        if ($request->hasFile('product_thumb')) {
+            $product_thumb = $request->file('product_thumb');
+            $img = uniqid() . '.' . time() . '.' . $product_thumb->getClientOriginalExtension();
+            $product_thumb->move(public_path('images/product/'), $img);
+            $product->product_thumb = 'images/product/' . $img;
+        }
 
         // multiple image upload
 
@@ -135,6 +157,15 @@ class ProductController extends Controller
         $product->product_old_price = $request->product_old_price;
         $product->product_short_desc = $request->product_short_desc;
         $product->product_long_desc = $request->product_long_desc;
+
+        // single image upload
+
+        if ($request->hasFile('product_thumb')) {
+            $product_thumb = $request->file('product_thumb');
+            $img = uniqid() . '.' . time() . '.' . $product_thumb->getClientOriginalExtension();
+            $product_thumb->move(public_path('images/product/'), $img);
+            $product->product_thumb = 'images/product/' . $img;
+        }
 
         // multiple image upload
 

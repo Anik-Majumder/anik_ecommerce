@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Admin;
+use App\Models\Banner;
+use App\Models\Basicinfo;
+use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +25,48 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+
+        View::composer('frontend.components.topbar', function ($view) {
+            $view->with([
+                'categories'=> Category::with('subcategories')->get(),
+                'basicinfos' => BasicInfo::first(),
+            ]);
+        });
+
+        View::composer('frontend.components.navbar', function ($view) {
+            $view->with([
+                'categories' => Category::all(),
+                'banners' => Banner::all()
+            ]);
+        });
+
+        View::composer('frontend.components.featured', function ($view) {
+            $view->with([
+                'products'=> Product::all(),
+            ]);
+        });
+
+        View::composer('frontend.components.categories', function ($view) {
+            $view->with([
+                'categories' => Category::all(),
+            ]);
+        });
+        View::composer('frontend.components.trendy', function ($view) {
+            $view->with([
+                'products'=> Product::all(),
+            ]);
+        });
+        View::composer('frontend.components.offer', function ($view) {
+            $view->with([
+                'banners' => Banner::all(),
+            ]);
+        });
+        View::composer('frontend.components.justarrived', function ($view) {
+            $view->with([
+                'products'=> Product::all(),
+            ]);
+        });
+
+
     }
 }

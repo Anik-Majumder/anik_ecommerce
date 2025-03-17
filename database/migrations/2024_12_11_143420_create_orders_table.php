@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained();
+            $table->foreignId('customer_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('subtotal');
             $table->integer('total');
             $table->integer('shipping_charge');
