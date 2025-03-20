@@ -63,9 +63,14 @@ Route::middleware('is_admin')->prefix('admin')->name('admin.')->group(function (
 
 // frontend routes
 
-Route::get('/', function () {
-    return view('frontend.pages.home');
-});
+Route::view('/', 'frontend.pages.home')->name('home');
+Route::view('/shop', 'frontend.pages.shop')->name('shop');
+Route::view('/shop-detail', 'frontend.pages.detail')->name('shop-detail');
+Route::view('/shopping-cart', 'frontend.pages.cart')->name('shopping-cart');
+Route::view('/checkout', 'frontend.pages.checkout')->name('checkout');
+Route::view('/contact', 'frontend.pages.contact')->name('contact');
+
+
 
 
 
