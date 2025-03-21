@@ -15,7 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.admin-table');
+        return view('backend.pages.admins.index');
     }
 
     public function getAdminData()
@@ -73,53 +73,39 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function login(Request $request)
     {
+//        dd($request->all());
         $request->validate(
             [
-                'name' => 'string',
                 'email' => ['required', 'string', 'email', 'lowercase'],
-                'phone' => 'string',
                 'password' => ['required'],
             ]
         );
+        
+        
+         $admin = Admin::where('email', $request->email)->first();
+        
 
-        $admin = new Admin();
-
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->phone = $request->phone;
-        $admin->password = $request->password;
-
-        // single image upload
-
-        if ($request->hasFile('profile_img')) {
-            $profile_img = $request->file('profile_img');
-            $img = uniqid() . '.' . time() . '.' . $profile_img->getClientOriginalExtension();
-            $profile_img->move(public_path('images/admin/'), $img);
-            $admin->profile_img = 'images/admin/' . $img;
-        }
-        // single image upload end
-
-        $check = $admin->save();
-
-        if ($check) {
-            return response()->json(['message' => 'success', 'data' => $admin], 200);
-        }
-
-        return response()->json(['message' => 'failed', 'data' => ''], 400);
-
-        // check auth and redirect admin to dashboard afrer registration
-
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if ($admin && Auth::guard('admin')->attempt(['email' => $request->email,
+                'password' => $request->password])) {
             $request->session()->regenerate();
+            
+            Auth::login($admin);
 
-            return redirect()->intended(route('admin.dashboard', absolute: false));
+//            return redirect()->route('admin.dashboard');
+            
+            return redirect()->intended(route('admin.dashboard'));
         }
 
+        return redirect()->back()->with('error', 'Invalid email or password');
+        
+    }
 
 
-
+    public function store()
+    {
+        
     }
 
     /**

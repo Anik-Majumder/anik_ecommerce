@@ -3,7 +3,7 @@
         <div class="user-wid text-center py-4">
             <div class="user-img">
                 <img
-                    src="assets/images/users/avatar-2.jpg"
+                    src="{{ asset('assets') }}/images/users/avatar-2.jpg"
                     alt=""
                     class="avatar-md mx-auto rounded-circle"
                 />
@@ -23,6 +23,13 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
                 <li>
+                    <a href="{{ route('admin.dashboard') }}"
+                       class="">
+                        <i class="mdi mdi-account-circle-outline"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
                     <a
                         href="javascript: void(0);"
                         class="has-arrow waves-effect"
@@ -32,7 +39,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="{{ url('/admins') }}">
+                            <a href="{{ route('admin.index') }}">
                                 <span>Admins</span>
                             </a>
                             <a href="{{ url('/users') }}">
@@ -78,7 +85,33 @@
                                 <span>Blog Comments</span>
                             </a> -->
                         </li>
+                        
+                        
                     </ul>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.index') }}"
+                       class="">
+                        <i class="mdi mdi-account-circle-outline"></i>
+                        <span>Admins</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.index') }}"
+                       class="">
+                        <i class="mdi mdi-account-circle-outline"></i>
+                        <span>Admins</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.index') }}"
+                       class="">
+                        <i class="mdi mdi-account-circle-outline"></i>
+                        <span>Admins</span>
+                    </a>
                 </li>
             </ul>
         </div>
