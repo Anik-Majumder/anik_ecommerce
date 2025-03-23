@@ -27,7 +27,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         ->name('login');
 
     Route::post('/login', [AdminController::class, 'login'])->name('login-check');
-    
+
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');
 });
 
@@ -55,18 +55,18 @@ Route::prefix('admin')->middleware('is_admin')->group(function ()
 
     Route::resource('/brands', BrandController::class)->names('brand');
 
-//basicinfo routes
+//basicinfos routes
 
-    Route::get('/get-basicinfo-data', [BasicinfoController::class, 'getBasicinfosData'])->name('get-basicinfo-data');
+    Route::get('/get-basicinfos-data', [BasicinfoController::class, 'getBasicinfosData'])->name('get-basicinfos-data');
 
-    Route::resource('/basicinfos', BasicinfoController::class)->names('basicinfo');
+    Route::resource('/basicinfos', BasicinfoController::class)->names('basicinfos');
 
 
-//basicinfo routes
+//basicinfos routes
 
-    Route::get('/get-basicinfo-data', [BasicinfoController::class, 'getBasicinfosData'])->name('get-basicinfo-data');
+    Route::get('/get-basicinfos-data', [BasicinfoController::class, 'getBasicinfosData'])->name('get-basicinfos-data');
 
-    Route::resource('/basicinfos', BasicinfoController::class)->names('basicinfo');
+    Route::resource('/basicinfos', BasicinfoController::class)->names('basicinfos');
 
 //banner routes
 

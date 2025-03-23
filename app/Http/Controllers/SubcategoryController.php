@@ -17,7 +17,7 @@ class SubcategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('backend.template.components.subcategory-table', compact('categories'));
+        return view('backend.pages.subcategory.index', compact('categories'));
     }
 
     public function getSubcategoriesData()

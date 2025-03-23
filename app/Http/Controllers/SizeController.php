@@ -14,7 +14,7 @@ class SizeController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.size-table');
+        return view('backend.pages.sizes.index');
     }
 
     public function getSizesData()

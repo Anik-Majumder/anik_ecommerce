@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.category-table');
+        return view('backend.pages.categories.index');
     }
 
     public function getCategoriesData()

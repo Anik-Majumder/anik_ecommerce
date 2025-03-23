@@ -13,7 +13,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.customer-table');
+        return view('backend.pages.customer.index');
     }
 
     public function getcustomersData()
@@ -22,7 +22,7 @@ class CustomerController extends Controller
 
         return DataTables::of($customers)
             ->addColumn('action', function ($customer) {
-                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $customer->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $customer->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteCustomerBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $customer->id . '">Delete</a>';
             })->rawColumns(['action'])
             ->make(true);

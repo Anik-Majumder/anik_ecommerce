@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.user-table');
+        return view('backend.pages.user.index');
     }
 
     public function getUsersData()
@@ -22,7 +22,7 @@ class UserController extends Controller
 
         return DataTables::of($users)
             ->addColumn('action', function ($user) {
-                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $user->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $user->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteUserBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $user->id . '">Delete</a>';
             })->addColumn('profile_img', function ($user) {
                 return '<img src="' . $user->profile_img . '" border="0" width="40" height="40" class="img-rounded" align="center" />';

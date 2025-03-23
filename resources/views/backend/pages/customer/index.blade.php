@@ -1,6 +1,6 @@
 @extends('backend.layout.master')
 
-@section('title','Categories')
+@section('title','customers')
 
 @push('css')
     <style></style>
@@ -23,7 +23,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="javascript: void(0);">Tables</a>
                                 </li>
-                                <li class="breadcrumb-item active">Categories</li>
+                                <li class="breadcrumb-item active">Customers</li>
                             </ol>
                         </div>
                     </div>
@@ -44,12 +44,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop"
                                 >
-                                    Add Categories
+                                    Add Customers
                                 </button>
                             </div>
                             <!-- Satic modal button end-->
                             <table
-                                id="categoryTable"
+                                id="customerTable"
                                 class="table table-striped table-bordered dt-responsive nowrap"
                                 style="
                                 border-collapse: collapse;
@@ -60,9 +60,11 @@
                                 <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Category Image</th>
-                                    <th>Category Name</th>
-                                    <th>Category Slug</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>District</th>
+                                    <th>Country</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -94,7 +96,7 @@
                                         class="modal-title"
                                         id="staticBackdropLabel"
                                     >
-                                        Add Category
+                                        Add Customers
                                     </h5>
                                     <button
                                         type="button"
@@ -110,7 +112,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <form
-                                                        id="categoryAddForm"
+                                                        id="customerAddForm"
                                                         class="needs-validation"
                                                         novalidate
                                                     >
@@ -121,11 +123,10 @@
                                                                     <label
                                                                         class="form-label"
                                                                         for="validationCustom01"
-                                                                    >Category
-                                                                        Name</label
+                                                                    >Name</label
                                                                     >
                                                                     <input
-                                                                        name="category_name"
+                                                                        name="customer_name"
                                                                         type="text"
                                                                         class="form-control"
                                                                         id="validationCustom01"
@@ -134,21 +135,71 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                         <div class="row">
-                                                            <div class="mb-12">
-                                                                <label
-                                                                    class="input-group-text"
-                                                                    for="inputGroupFile02"
-                                                                >Upload Category
-                                                                    Image</label
-                                                                >
-                                                                <input
-                                                                    name="category_image"
-                                                                    type="file"
-                                                                    class="form-control"
-                                                                    id="inputGroupFile02"
-                                                                />
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="example-email-input"
+                                                                        class="form-label"
+                                                                    >Email</label
+                                                                    >
+                                                                    <input
+                                                                        name="customer_email"
+                                                                        class="form-control"
+                                                                        type="email"
+                                                                        id="example-email-input"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        class="form-label"
+                                                                        for="validationCustom01"
+                                                                    >Address</label
+                                                                    >
+                                                                    <input
+                                                                        name="customer_address"
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        id="validationCustom01"
+                                                                        required
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="example-email-input"
+                                                                        class="form-label"
+                                                                    >District</label
+                                                                    >
+                                                                    <input
+                                                                        name="customer_district"
+                                                                        class="form-control"
+                                                                        type="text"
+                                                                        id="example-email-input"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="example-email-input"
+                                                                        class="form-label"
+                                                                    >Country</label
+                                                                    >
+                                                                    <input
+                                                                        name="country"
+                                                                        class="form-control"
+                                                                        type="text"
+                                                                        id="example-email-input"
+                                                                    />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -206,7 +257,7 @@
                                         class="modal-title"
                                         id="staticBackdropLabel"
                                     >
-                                        Edit Category
+                                        Edit Customers
                                     </h5>
                                     <button
                                         type="button"
@@ -222,7 +273,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <form
-                                                        id="categoryFormUpdate"
+                                                        id="customerFormUpdate"
                                                         class="needs-validation"
                                                         novalidate
                                                     >
@@ -238,41 +289,83 @@
                                                                     <label
                                                                         class="form-label"
                                                                         for="validationCustom01"
-                                                                    >Category
-                                                                        Name</label
+                                                                    >Name</label
                                                                     >
                                                                     <input
-                                                                        name="category_name"
+                                                                        name="customer_name"
                                                                         type="text"
                                                                         class="form-control"
-                                                                        id="category_name"
+                                                                        id="customer_name"
                                                                         required
                                                                     />
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                         <div class="row">
-                                                            <div class="mb-12">
-                                                                <label
-                                                                    class="input-group-text"
-                                                                    for="inputGroupFile02"
-                                                                >Upload Category
-                                                                    Image</label
-                                                                >
-                                                                <input
-                                                                    name="category_image"
-                                                                    type="file"
-                                                                    class="form-control"
-                                                                    id="inputGroupFile02"
-                                                                />
-                                                                <img
-                                                                    src=""
-                                                                    alt=""
-                                                                    width="40px"
-                                                                    height="40px"
-                                                                    id="category_image"
-                                                                />
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="example-email-input"
+                                                                        class="form-label"
+                                                                    >Email</label
+                                                                    >
+                                                                    <input
+                                                                        name="customer_email"
+                                                                        class="form-control"
+                                                                        type="email"
+                                                                        id="customer_email"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        class="form-label"
+                                                                        for="validationCustom01"
+                                                                    >Address</label
+                                                                    >
+                                                                    <input
+                                                                        name="customer_address"
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        id="customer_address"
+                                                                        required
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="example-email-input"
+                                                                        class="form-label"
+                                                                    >District</label
+                                                                    >
+                                                                    <input
+                                                                        name="customer_district"
+                                                                        class="form-control"
+                                                                        type="text"
+                                                                        id="customer_district"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="example-email-input"
+                                                                        class="form-label"
+                                                                    >Country</label
+                                                                    >
+                                                                    <input
+                                                                        name="country"
+                                                                        class="form-control"
+                                                                        type="text"
+                                                                        id="country"
+                                                                    />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -332,23 +425,29 @@
 
         var token = $("input[name='_token']").val();
 
-        let categoryTable = $("#categoryTable").DataTable({
+        let customerTable = $("#customerTable").DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('get-category-data') }}",
+            ajax: "{{ route('get-customer-data') }}",
 
             columns: [
                 {
                     data: "id",
                 },
                 {
-                    data: "category_image",
+                    data: "customer_name",
                 },
                 {
-                    data: "category_name",
+                    data: "customer_email",
                 },
                 {
-                    data: "category_slug",
+                    data: "customer_address",
+                },
+                {
+                    data: "customer_district",
+                },
+                {
+                    data: "country",
                 },
                 {
                     data: "action",
@@ -359,12 +458,12 @@
             ],
         });
 
-        // add category
+        // add customer
 
-        $("#categoryAddForm").submit(function (e) {
+        $("#customerAddForm").submit(function (e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ route('category.store') }}",
+                url: "{{ route('customer.store') }}",
                 type: "POST",
                 data: new FormData(this),
                 processData: false,
@@ -372,9 +471,9 @@
                 success: function (res) {
                     console.log("success");
 
-                    $("#categoryAddForm")[0].reset();
+                    $("#customerAddForm")[0].reset();
                     $(".addModal").modal("hide");
-                    categoryTable.ajax.reload();
+                    customerTable.ajax.reload();
                 },
                 error: function (err) {
                     console.log(err);
@@ -382,7 +481,7 @@
             });
         });
 
-        // read category
+        // read customer
 
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
@@ -391,7 +490,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id + "/edit",
+                url: "{{ url('customers') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -400,9 +499,11 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#category_image").attr("src", res.data.category_image);
-                    $("#category_name").val(res.data.category_name);
-                    $("#category_slug").val(res.data.category_slug);
+                    $("#customer_name").val(res.data.customer_name);
+                    $("#customer_email").val(res.data.customer_email);
+                    $("#customer_address").val(res.data.customer_address);
+                    $("#customer_district").val(res.data.customer_district);
+                    $("#country").val(res.data.country);
                 },
                 error: function (err) {
                     console.log(err);
@@ -410,14 +511,14 @@
             });
         });
 
-        // update category
+        // update customer
 
-        $("#categoryFormUpdate").submit(function (e) {
+        $("#customerFormUpdate").submit(function (e) {
             e.preventDefault();
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id,
+                url: "{{ url('customers') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -428,9 +529,9 @@
                 success: function (res) {
                     console.log("success");
 
-                    $("#categoryFormUpdate")[0].reset();
+                    $("#customerFormUpdate")[0].reset();
                     $("#editModal").modal("hide");
-                    categoryTable.ajax.reload();
+                    customerTable.ajax.reload();
                 },
                 error: function (err) {
                     console.log(err);
@@ -438,14 +539,14 @@
             });
         });
 
-        // Delete category
+        // Delete customer
 
-        $(document).on("click", "#deleteCategoryBtn", function () {
+        $(document).on("click", "#deleteCustomerBtn", function () {
             let id = $(this).data("id");
             console.log(id);
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id,
+                url: "{{ url('customers') }}/" + id,
                 data: {
                     _token: token,
                 },
@@ -454,7 +555,7 @@
                 //     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 // },
                 success: function (res) {
-                    categoryTable.ajax.reload();
+                    customerTable.ajax.reload();
                     console.log("success");
                 },
                 eror: function (err) {

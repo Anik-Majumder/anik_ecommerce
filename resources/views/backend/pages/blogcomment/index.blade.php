@@ -1,6 +1,6 @@
 @extends('backend.layout.master')
 
-@section('title','Categories')
+@section('title','blogcomments')
 
 @push('css')
     <style></style>
@@ -23,7 +23,9 @@
                                 <li class="breadcrumb-item">
                                     <a href="javascript: void(0);">Tables</a>
                                 </li>
-                                <li class="breadcrumb-item active">Categories</li>
+                                <li class="breadcrumb-item active">
+                                    Blog Comments
+                                </li>
                             </ol>
                         </div>
                     </div>
@@ -44,12 +46,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop"
                                 >
-                                    Add Categories
+                                    Add Blog Comment
                                 </button>
                             </div>
                             <!-- Satic modal button end-->
                             <table
-                                id="categoryTable"
+                                id="blogcommentTable"
                                 class="table table-striped table-bordered dt-responsive nowrap"
                                 style="
                                 border-collapse: collapse;
@@ -60,9 +62,10 @@
                                 <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Category Image</th>
-                                    <th>Category Name</th>
-                                    <th>Category Slug</th>
+                                    <th>Blog ID</th>
+                                    <th>Comment Text</th>
+                                    <th>Comment Author</th>
+                                    <th>Comment Date</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -94,7 +97,7 @@
                                         class="modal-title"
                                         id="staticBackdropLabel"
                                     >
-                                        Add Category
+                                        Add Blog Comment
                                     </h5>
                                     <button
                                         type="button"
@@ -110,7 +113,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <form
-                                                        id="categoryAddForm"
+                                                        id="blogcommentAddForm"
                                                         class="needs-validation"
                                                         novalidate
                                                     >
@@ -121,11 +124,11 @@
                                                                     <label
                                                                         class="form-label"
                                                                         for="validationCustom01"
-                                                                    >Category
-                                                                        Name</label
+                                                                    >Blog
+                                                                        id</label
                                                                     >
                                                                     <input
-                                                                        name="category_name"
+                                                                        name="blog_id"
                                                                         type="text"
                                                                         class="form-control"
                                                                         id="validationCustom01"
@@ -134,23 +137,62 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                         <div class="row">
-                                                            <div class="mb-12">
-                                                                <label
-                                                                    class="input-group-text"
-                                                                    for="inputGroupFile02"
-                                                                >Upload Category
-                                                                    Image</label
-                                                                >
-                                                                <input
-                                                                    name="category_image"
-                                                                    type="file"
-                                                                    class="form-control"
-                                                                    id="inputGroupFile02"
-                                                                />
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        class="form-label"
+                                                                        for="validationCustom01"
+                                                                    >Comment
+                                                                        Text</label
+                                                                    >
+                                                                    <input
+                                                                        name="comment_text"
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        id="validationCustom01"
+                                                                        required
+                                                                    />
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="example-email-input"
+                                                                        class="form-label"
+                                                                    >Comment
+                                                                        Author</label
+                                                                    >
+                                                                    <input
+                                                                        name="comment_author"
+                                                                        class="form-control"
+                                                                        type="text"
+                                                                        id="example-email-input"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="example-email-input"
+                                                                        class="form-label"
+                                                                    >Comment
+                                                                        Date</label
+                                                                    >
+                                                                    <input
+                                                                        name="comment_date"
+                                                                        class="form-control"
+                                                                        type="date"
+                                                                        id="example-email-input"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                         <div class="modal-footer">
                                                             <button
                                                                 type="button"
@@ -206,7 +248,7 @@
                                         class="modal-title"
                                         id="staticBackdropLabel"
                                     >
-                                        Edit Category
+                                        Edit Blog Comment
                                     </h5>
                                     <button
                                         type="button"
@@ -222,7 +264,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <form
-                                                        id="categoryFormUpdate"
+                                                        id="blogcommentFormUpdate"
                                                         class="needs-validation"
                                                         novalidate
                                                     >
@@ -238,41 +280,72 @@
                                                                     <label
                                                                         class="form-label"
                                                                         for="validationCustom01"
-                                                                    >Category
-                                                                        Name</label
+                                                                    >Blog
+                                                                        id</label
                                                                     >
                                                                     <input
-                                                                        name="category_name"
+                                                                        name="blog_id"
                                                                         type="text"
                                                                         class="form-control"
-                                                                        id="category_name"
+                                                                        id="blog_id"
                                                                         required
                                                                     />
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                         <div class="row">
-                                                            <div class="mb-12">
-                                                                <label
-                                                                    class="input-group-text"
-                                                                    for="inputGroupFile02"
-                                                                >Upload Category
-                                                                    Image</label
-                                                                >
-                                                                <input
-                                                                    name="category_image"
-                                                                    type="file"
-                                                                    class="form-control"
-                                                                    id="inputGroupFile02"
-                                                                />
-                                                                <img
-                                                                    src=""
-                                                                    alt=""
-                                                                    width="40px"
-                                                                    height="40px"
-                                                                    id="category_image"
-                                                                />
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        class="form-label"
+                                                                        for="validationCustom01"
+                                                                    >Comment
+                                                                        Text</label
+                                                                    >
+                                                                    <input
+                                                                        name="comment_text"
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        id="comment_text"
+                                                                        required
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="example-email-input"
+                                                                        class="form-label"
+                                                                    >Comment
+                                                                        Author</label
+                                                                    >
+                                                                    <input
+                                                                        name="comment_author"
+                                                                        class="form-control"
+                                                                        type="text"
+                                                                        id="comment_author"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="example-email-input"
+                                                                        class="form-label"
+                                                                    >Comment
+                                                                        Date</label
+                                                                    >
+                                                                    <input
+                                                                        name="comment_date"
+                                                                        class="form-control"
+                                                                        type="date"
+                                                                        id="comment_date"
+                                                                    />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -332,23 +405,26 @@
 
         var token = $("input[name='_token']").val();
 
-        let categoryTable = $("#categoryTable").DataTable({
+        let blogcommentTable = $("#blogcommentTable").DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('get-category-data') }}",
+            ajax: "{{ route('get-blogcomment-data') }}",
 
             columns: [
                 {
                     data: "id",
                 },
                 {
-                    data: "category_image",
+                    data: "blog_id",
                 },
                 {
-                    data: "category_name",
+                    data: "comment_text",
                 },
                 {
-                    data: "category_slug",
+                    data: "comment_author",
+                },
+                {
+                    data: "comment_date",
                 },
                 {
                     data: "action",
@@ -359,12 +435,12 @@
             ],
         });
 
-        // add category
+        // add blogcomment
 
-        $("#categoryAddForm").submit(function (e) {
+        $("#blogcommentAddForm").submit(function (e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ route('category.store') }}",
+                url: "{{ route('blogcomment.store') }}",
                 type: "POST",
                 data: new FormData(this),
                 processData: false,
@@ -372,9 +448,9 @@
                 success: function (res) {
                     console.log("success");
 
-                    $("#categoryAddForm")[0].reset();
+                    $("#blogcommentAddForm")[0].reset();
                     $(".addModal").modal("hide");
-                    categoryTable.ajax.reload();
+                    blogcommentTable.ajax.reload();
                 },
                 error: function (err) {
                     console.log(err);
@@ -382,7 +458,7 @@
             });
         });
 
-        // read category
+        // read blogcomment
 
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
@@ -391,7 +467,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id + "/edit",
+                url: "{{ url('blogcomments') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -400,9 +476,10 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#category_image").attr("src", res.data.category_image);
-                    $("#category_name").val(res.data.category_name);
-                    $("#category_slug").val(res.data.category_slug);
+                    $("#blog_id").val(res.data.blog_id);
+                    $("#comment_text").val(res.data.comment_text);
+                    $("#comment_author").val(res.data.comment_author);
+                    $("#comment_date").val(res.data.comment_date);
                 },
                 error: function (err) {
                     console.log(err);
@@ -410,14 +487,14 @@
             });
         });
 
-        // update category
+        // update blogcomment
 
-        $("#categoryFormUpdate").submit(function (e) {
+        $("#blogcommentFormUpdate").submit(function (e) {
             e.preventDefault();
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id,
+                url: "{{ url('blogcomments') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -428,9 +505,9 @@
                 success: function (res) {
                     console.log("success");
 
-                    $("#categoryFormUpdate")[0].reset();
+                    $("#blogcommentFormUpdate")[0].reset();
                     $("#editModal").modal("hide");
-                    categoryTable.ajax.reload();
+                    blogcommentTable.ajax.reload();
                 },
                 error: function (err) {
                     console.log(err);
@@ -438,14 +515,14 @@
             });
         });
 
-        // Delete category
+        // Delete blogcomment
 
-        $(document).on("click", "#deleteCategoryBtn", function () {
+        $(document).on("click", "#deleteBlogcommentBtn", function () {
             let id = $(this).data("id");
             console.log(id);
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id,
+                url: "{{ url('blogcomments') }}/" + id,
                 data: {
                     _token: token,
                 },
@@ -454,7 +531,7 @@
                 //     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 // },
                 success: function (res) {
-                    categoryTable.ajax.reload();
+                    blogcommentTable.ajax.reload();
                     console.log("success");
                 },
                 eror: function (err) {

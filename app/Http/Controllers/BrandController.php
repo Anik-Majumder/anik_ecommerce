@@ -14,7 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.brand-table');
+        return view('backend.pages.brand.index');
     }
 
     public function getBrandsData()

@@ -13,7 +13,7 @@ class BlogCommentController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.blogcomment-table');
+        return view('backend.pages.blogcomment.index');
     }
 
     public function getBlogcommentsData()
@@ -22,7 +22,7 @@ class BlogCommentController extends Controller
 
         return DataTables::of($blogComments)
             ->addColumn('action', function ($blogComment) {
-                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $blogComment->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $blogComment->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteBlogcommentBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $blogComment->id . '">Delete</a>';
             })->rawColumns(['action'])
             ->make(true);

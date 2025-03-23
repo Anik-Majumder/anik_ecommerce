@@ -14,7 +14,7 @@ class ColorController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.color-table');
+        return view('backend.pages.color.index');
     }
 
     public function getColorsData()

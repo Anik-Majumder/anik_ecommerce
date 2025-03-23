@@ -13,7 +13,7 @@ class BasicinfoController extends Controller
      */
     public function index()
     {
-        return view('backend.template.components.basicinfo-table');
+        return view('backend.pages.basicinfos.index');
     }
 
     public function getBasicinfosData()
@@ -22,7 +22,7 @@ class BasicinfoController extends Controller
 
         return DataTables::of($basicinfos)
             ->addColumn('action', function ($basicinfo) {
-                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $basicinfo->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $basicinfo->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteBasicinfoBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $basicinfo->id . '">Delete</a>';
             })->addColumn('light_logo', function ($basicinfo) {
                 return '<img src="' . $basicinfo->light_logo . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
@@ -80,14 +80,14 @@ class BasicinfoController extends Controller
         if ($request->hasFile('light_logo')) {
             $light_logo = $request->file('light_logo');
             $img = uniqid() . '.' . time() . '.' . $light_logo->getClientOriginalExtension();
-            $light_logo->move(public_path('images/basicinfo/'), $img);
-            $basicinfo->light_logo = 'images/basicinfo/' . $img;
+            $light_logo->move(public_path('images/basicinfos/'), $img);
+            $basicinfo->light_logo = 'images/basicinfos/' . $img;
         }
         if ($request->hasFile('dark_logo')) {
             $dark_logo = $request->file('dark_logo');
             $img = uniqid() . '.' . time() . '.' . $dark_logo->getClientOriginalExtension();
-            $dark_logo->move(public_path('images/basicinfo/'), $img);
-            $basicinfo->dark_logo = 'images/basicinfo/' . $img;
+            $dark_logo->move(public_path('images/basicinfos/'), $img);
+            $basicinfo->dark_logo = 'images/basicinfos/' . $img;
         }
         // single image upload end
 
@@ -139,14 +139,14 @@ class BasicinfoController extends Controller
         if ($request->hasFile('light_logo')) {
             $light_logo = $request->file('light_logo');
             $img = uniqid() . '.' . time() . '.' . $light_logo->getClientOriginalExtension();
-            $light_logo->move(public_path('images/basicinfo/'), $img);
-            $basicinfo->light_logo = 'images/basicinfo/' . $img;
+            $light_logo->move(public_path('images/basicinfos/'), $img);
+            $basicinfo->light_logo = 'images/basicinfos/' . $img;
         }
         if ($request->hasFile('dark_logo')) {
             $dark_logo = $request->file('dark_logo');
             $img = uniqid() . '.' . time() . '.' . $dark_logo->getClientOriginalExtension();
-            $dark_logo->move(public_path('images/basicinfo/'), $img);
-            $basicinfo->dark_logo = 'images/basicinfo/' . $img;
+            $dark_logo->move(public_path('images/basicinfos/'), $img);
+            $basicinfo->dark_logo = 'images/basicinfos/' . $img;
         }
         // single image upload end
 

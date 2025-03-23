@@ -1,6 +1,6 @@
 @extends('backend.layout.master')
 
-@section('title','Categories')
+@section('title','sizes')
 
 @push('css')
     <style></style>
@@ -23,7 +23,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="javascript: void(0);">Tables</a>
                                 </li>
-                                <li class="breadcrumb-item active">Categories</li>
+                                <li class="breadcrumb-item active">Sizes</li>
                             </ol>
                         </div>
                     </div>
@@ -44,12 +44,12 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop"
                                 >
-                                    Add Categories
+                                    Add Sizes
                                 </button>
                             </div>
                             <!-- Satic modal button end-->
                             <table
-                                id="categoryTable"
+                                id="sizeTable"
                                 class="table table-striped table-bordered dt-responsive nowrap"
                                 style="
                                 border-collapse: collapse;
@@ -60,9 +60,8 @@
                                 <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Category Image</th>
-                                    <th>Category Name</th>
-                                    <th>Category Slug</th>
+                                    <th>Size Name</th>
+                                    <th>Size Slug</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -94,7 +93,7 @@
                                         class="modal-title"
                                         id="staticBackdropLabel"
                                     >
-                                        Add Category
+                                        Add Size
                                     </h5>
                                     <button
                                         type="button"
@@ -110,7 +109,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <form
-                                                        id="categoryAddForm"
+                                                        id="sizeAddForm"
                                                         class="needs-validation"
                                                         novalidate
                                                     >
@@ -121,11 +120,11 @@
                                                                     <label
                                                                         class="form-label"
                                                                         for="validationCustom01"
-                                                                    >Category
+                                                                    >Size
                                                                         Name</label
                                                                     >
                                                                     <input
-                                                                        name="category_name"
+                                                                        name="size_name"
                                                                         type="text"
                                                                         class="form-control"
                                                                         id="validationCustom01"
@@ -135,22 +134,6 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="row">
-                                                            <div class="mb-12">
-                                                                <label
-                                                                    class="input-group-text"
-                                                                    for="inputGroupFile02"
-                                                                >Upload Category
-                                                                    Image</label
-                                                                >
-                                                                <input
-                                                                    name="category_image"
-                                                                    type="file"
-                                                                    class="form-control"
-                                                                    id="inputGroupFile02"
-                                                                />
-                                                            </div>
-                                                        </div>
                                                         <div class="modal-footer">
                                                             <button
                                                                 type="button"
@@ -206,7 +189,7 @@
                                         class="modal-title"
                                         id="staticBackdropLabel"
                                     >
-                                        Edit Category
+                                        Edit Size
                                     </h5>
                                     <button
                                         type="button"
@@ -222,7 +205,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <form
-                                                        id="categoryFormUpdate"
+                                                        id="sizeFormUpdate"
                                                         class="needs-validation"
                                                         novalidate
                                                     >
@@ -238,43 +221,20 @@
                                                                     <label
                                                                         class="form-label"
                                                                         for="validationCustom01"
-                                                                    >Category
+                                                                    >Size
                                                                         Name</label
                                                                     >
                                                                     <input
-                                                                        name="category_name"
+                                                                        name="size_name"
                                                                         type="text"
                                                                         class="form-control"
-                                                                        id="category_name"
+                                                                        id="size_name"
                                                                         required
                                                                     />
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <div class="row">
-                                                            <div class="mb-12">
-                                                                <label
-                                                                    class="input-group-text"
-                                                                    for="inputGroupFile02"
-                                                                >Upload Category
-                                                                    Image</label
-                                                                >
-                                                                <input
-                                                                    name="category_image"
-                                                                    type="file"
-                                                                    class="form-control"
-                                                                    id="inputGroupFile02"
-                                                                />
-                                                                <img
-                                                                    src=""
-                                                                    alt=""
-                                                                    width="40px"
-                                                                    height="40px"
-                                                                    id="category_image"
-                                                                />
-                                                            </div>
-                                                        </div>
                                                         <div class="modal-footer">
                                                             <button
                                                                 type="button"
@@ -332,23 +292,20 @@
 
         var token = $("input[name='_token']").val();
 
-        let categoryTable = $("#categoryTable").DataTable({
+        let sizeTable = $("#sizeTable").DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('get-category-data') }}",
+            ajax: "{{ route('get-size-data') }}",
 
             columns: [
                 {
                     data: "id",
                 },
                 {
-                    data: "category_image",
+                    data: "size_name",
                 },
                 {
-                    data: "category_name",
-                },
-                {
-                    data: "category_slug",
+                    data: "size_slug",
                 },
                 {
                     data: "action",
@@ -359,12 +316,12 @@
             ],
         });
 
-        // add category
+        // add brand
 
-        $("#categoryAddForm").submit(function (e) {
+        $("#sizeAddForm").submit(function (e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ route('category.store') }}",
+                url: "{{ route('size.store') }}",
                 type: "POST",
                 data: new FormData(this),
                 processData: false,
@@ -372,9 +329,9 @@
                 success: function (res) {
                     console.log("success");
 
-                    $("#categoryAddForm")[0].reset();
+                    $("#sizeAddForm")[0].reset();
                     $(".addModal").modal("hide");
-                    categoryTable.ajax.reload();
+                    sizeTable.ajax.reload();
                 },
                 error: function (err) {
                     console.log(err);
@@ -382,7 +339,7 @@
             });
         });
 
-        // read category
+        // read size
 
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
@@ -391,7 +348,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id + "/edit",
+                url: "{{ url('sizes') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -400,9 +357,8 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#category_image").attr("src", res.data.category_image);
-                    $("#category_name").val(res.data.category_name);
-                    $("#category_slug").val(res.data.category_slug);
+                    $("#size_name").val(res.data.size_name);
+                    $("#size_slug").val(res.data.size_slug);
                 },
                 error: function (err) {
                     console.log(err);
@@ -410,14 +366,14 @@
             });
         });
 
-        // update category
+        // update size
 
-        $("#categoryFormUpdate").submit(function (e) {
+        $("#sizeFormUpdate").submit(function (e) {
             e.preventDefault();
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id,
+                url: "{{ url('sizes') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -428,9 +384,9 @@
                 success: function (res) {
                     console.log("success");
 
-                    $("#categoryFormUpdate")[0].reset();
+                    $("#sizeFormUpdate")[0].reset();
                     $("#editModal").modal("hide");
-                    categoryTable.ajax.reload();
+                    sizeTable.ajax.reload();
                 },
                 error: function (err) {
                     console.log(err);
@@ -438,14 +394,14 @@
             });
         });
 
-        // Delete category
+        // Delete size
 
-        $(document).on("click", "#deleteCategoryBtn", function () {
+        $(document).on("click", "#deleteSizeBtn", function () {
             let id = $(this).data("id");
             console.log(id);
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id,
+                url: "{{ url('sizes') }}/" + id,
                 data: {
                     _token: token,
                 },
@@ -454,7 +410,7 @@
                 //     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
                 // },
                 success: function (res) {
-                    categoryTable.ajax.reload();
+                    sizeTable.ajax.reload();
                     console.log("success");
                 },
                 eror: function (err) {

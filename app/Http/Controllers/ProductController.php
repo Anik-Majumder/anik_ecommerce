@@ -24,7 +24,7 @@ class ProductController extends Controller
         $brands = Brand::all();
         $colors = Color::all();
         $sizes = Size::all();
-        return view('backend.template.components.product-table', compact('categories','subcategories', 'brands', 'colors', 'sizes'));
+        return view('backend.pages.product.index', compact('categories','subcategories', 'brands', 'colors', 'sizes'));
     }
 
     public function getProductsData()
