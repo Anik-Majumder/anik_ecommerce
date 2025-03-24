@@ -58,7 +58,7 @@ class AdminController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
             'profile_img' => $request->profile_img,
         ]);
 
@@ -103,9 +103,41 @@ class AdminController extends Controller
     }
 
 
-    public function store()
+    public function store(Request $request)
     {
+        $request->validate(
+            [
+                'name' => 'string',
+                'email' => ['required', 'string', 'email', 'lowercase'],
+                'phone' => 'string',
+                'password' => ['required'],
+            ]
+        );
 
+        $admin = new Admin();
+
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->phone = $request->phone;
+        $admin->password = Hash::make($request->password);
+
+        // single image upload
+
+        if ($request->hasFile('profile_img')) {
+            $profile_img = $request->file('profile_img');
+            $img = uniqid() . '.' . time() . '.' . $profile_img->getClientOriginalExtension();
+            $profile_img->move(public_path('images/admin/'), $img);
+            $admin->profile_img = 'images/admin/' . $img;
+        }
+        // single image upload end
+
+        $check = $admin->save();
+
+        if ($check) {
+            return response()->json(['message' => 'success', 'data' => $admin], 200);
+        }
+
+        return response()->json(['message' => 'failed', 'data' => ''], 400);
     }
 
     /**
@@ -141,7 +173,7 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->phone = $request->phone;
-        $admin->password = $request->password;
+        $admin->password = Hash::make($request->password);
 
         // single image upload
 

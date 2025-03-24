@@ -48,28 +48,31 @@
                                 </button>
                             </div>
                             <!-- Satic modal button end-->
-                            <table
-                                id="bannerTable"
-                                class="table table-striped table-bordered dt-responsive nowrap"
-                                style="
-                                border-collapse: collapse;
-                                border-spacing: 0;
-                                width: 100%;
-                            "
-                            >
-                                <thead>
-                                <tr>
-                                    <th>SL</th>
-                                    <th>Banner Image</th>
-                                    <th>Banner Title 1</th>
-                                    <th>Banner Title 2</th>
-                                    <th>Banner Slug</th>
-                                    <th>Banner btn Link</th>
-                                    <th>Banner btn Text</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                            </table>
+                            <div class="table-responsive" style="max-width: 100%; overflow-x: auto;">
+                                <table
+                                    id="bannerTable"
+                                    class="table table-striped table-bordered dt-responsive nowrap"
+                                    style="
+                                    border-collapse: collapse;
+                                    border-spacing: 0;
+                                    width: 100%;
+                                    white-space: nowrap;
+                                "
+                                >
+                                    <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>Banner Image</th>
+                                        <th>Banner Title 1</th>
+                                        <th>Banner Title 2</th>
+                                        <th>Banner Slug</th>
+                                        <th>Banner btn Link</th>
+                                        <th>Banner btn Text</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            <div class="table-responsive" style="max-width: 100%; overflow-x: auto;">
                         </div>
                     </div>
                 </div>
@@ -438,13 +441,13 @@
 @endsection
 
 @push('js')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"
-    ></script>
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>--}}
+{{--    <script src="https://cdn.datatables.net/2.1.2/js/dataTables.js"></script>--}}
+{{--    <script--}}
+{{--        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"--}}
+{{--        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"--}}
+{{--        crossorigin="anonymous"--}}
+{{--    ></script>--}}
     <script>
         // render datatables
 
@@ -454,6 +457,10 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('get-banner-data') }}",
+            // ✅ Enable horizontal scrolling
+            scrollX: true,
+            autoWidth: false,
+            responsive: true,
 
             columns: [
                 {
