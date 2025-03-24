@@ -776,7 +776,7 @@
         });
 
         // read basicinfos
-
+        let asset_path = "{{ asset('') }}";
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
             console.log(id);
@@ -784,7 +784,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('basicinfos') }}/" + id + "/edit",
+                url: "{{ url('admin/basicinfos') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -793,8 +793,8 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#light_logo").attr("src", res.data.light_logo);
-                    $("#dark_logo").attr("src", res.data.dark_logo);
+                    $("#light_logo").attr("src", asset_path + res.data.light_logo);
+                    $("#dark_logo").attr("src", asset_path + res.data.dark_logo);
                     $("#site_name").val(res.data.site_name);
                     $("#short_desc").val(res.data.short_desc);
                     $("#address").val(res.data.address);
@@ -819,7 +819,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('basicinfos') }}/" + id,
+                url: "{{ url('admin/basicinfos') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -847,7 +847,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('basicinfos') }}/" + id,
+                url: "{{ url('admin/basicinfos') }}/" + id,
                 data: {
                     _token: token,
                 },

@@ -372,7 +372,7 @@
         });
 
         // read user
-
+        let asset_path = "{{ asset('') }}";
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
             console.log(id);
@@ -380,7 +380,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('users') }}/" + id + "/edit",
+                url: "{{ url('admin/users') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -389,7 +389,7 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#profile_img").attr("src", res.data.profile_img);
+                    $("#profile_img").attr("src", asset_path + res.data.profile_img);
                     $("#name").val(res.data.name);
                     $("#email").val(res.data.email);
                     $("#phone").val(res.data.phone);
@@ -409,7 +409,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('users') }}/" + id,
+                url: "{{ url('admin/users') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -437,7 +437,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('users') }}/" + id,
+                url: "{{ url('admin/users') }}/" + id,
                 data: {
                     _token: token,
                 },

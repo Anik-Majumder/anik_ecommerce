@@ -497,7 +497,7 @@
         });
 
         // read blog
-
+        let asset_path = "{{ asset('') }}";
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
             console.log(id);
@@ -505,7 +505,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('blogs') }}/" + id + "/edit",
+                url: "{{ url('admin/blogs') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -514,7 +514,7 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#blog_image").attr("src", res.data.blog_image);
+                    $("#blog_image").attr("src", asset_path + res.data.blog_image);
                     $("#blog_title").val(res.data.blog_title);
                     $("#blog_long_desc").val(res.data.blog_long_desc);
                     $("#blog_short_desc").val(res.data.blog_short_desc);
@@ -533,7 +533,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('blogs') }}/" + id,
+                url: "{{ url('admin/blogs') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -561,7 +561,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('blogs') }}/" + id,
+                url: "{{ url('admin/blogs') }}/" + id,
                 data: {
                     _token: token,
                 },

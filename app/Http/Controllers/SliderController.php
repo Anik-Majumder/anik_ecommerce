@@ -26,7 +26,7 @@ class SliderController extends Controller
                 return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $slider->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteSliderBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $slider->id . '">Delete</a>';
             })->addColumn('slider_img', function ($slider) {
-                return '<img src="' . $slider->slider_img . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                return '<img src="' . asset($slider->slider_img) . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
             })->rawColumns(['slider_img', 'action'])
             ->make(true);
     }

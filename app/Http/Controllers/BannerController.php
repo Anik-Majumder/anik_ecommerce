@@ -26,7 +26,7 @@ class BannerController extends Controller
                 return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $banner->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteBannerBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $banner->id . '">Delete</a>';
             })->addColumn('banner_img', function ($banner) {
-                return '<img src="' . $banner->banner_img . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                return '<img src="' . asset($banner->banner_img) . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
             })->rawColumns(['banner_img', 'action'])
             ->make(true);
     }

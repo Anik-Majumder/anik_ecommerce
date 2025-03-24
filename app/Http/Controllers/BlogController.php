@@ -25,7 +25,7 @@ class BlogController extends Controller
                 return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $blog->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteBlogBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $blog->id . '">Delete</a>';
             })->addColumn('blog_image', function ($blog) {
-                return '<img src="' . $blog->blog_image . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                return '<img src="' . asset($blog->blog_image) . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
             })->rawColumns(['blog_image', 'action'])
             ->make(true);
     }

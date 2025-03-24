@@ -26,7 +26,7 @@ class CategoryController extends Controller
                 return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $category->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteCategoryBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $category->id . '">Delete</a>';
             })->addColumn('category_image', function ($category) {
-                return '<img src="' . $category->category_image . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                return '<img src="' . asset($category->category_image) . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
             })->rawColumns(['category_image', 'action'])
             ->make(true);
     }

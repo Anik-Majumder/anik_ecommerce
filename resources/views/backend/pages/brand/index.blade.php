@@ -383,7 +383,7 @@
         });
 
         // read brand
-
+        let asset_path = "{{ asset('') }}";
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
             console.log(id);
@@ -391,7 +391,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('brands') }}/" + id + "/edit",
+                url: "{{ url('admin/brands') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -400,7 +400,7 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#brand_image").attr("src", res.data.brand_image);
+                    $("#brand_image").attr("src", asset_path + res.data.brand_image);
                     $("#brand_name").val(res.data.brand_name);
                     $("#brand_slug").val(res.data.brand_slug);
                 },
@@ -417,7 +417,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('brands') }}/" + id,
+                url: "{{ url('admin/brands') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -445,7 +445,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('brands') }}/" + id,
+                url: "{{ url('admin/brands') }}/" + id,
                 data: {
                     _token: token,
                 },

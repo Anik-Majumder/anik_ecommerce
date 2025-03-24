@@ -501,7 +501,7 @@
         });
 
         // read slider
-
+        let asset_path = "{{ asset('') }}";
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
             console.log(id);
@@ -509,7 +509,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('sliders') }}/" + id + "/edit",
+                url: "{{ url('admin/sliders') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -518,7 +518,7 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#slider_img").attr("src", res.data.slider_img);
+                    $("#slider_img").attr("src", asset_path + res.data.slider_img);
                     $("#slider_title_1").val(res.data.slider_title_1);
                     $("#slider_title_2").val(res.data.slider_title_2);
                     $("#slider_slug").val(res.data.slider_slug);
@@ -538,7 +538,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('sliders') }}/" + id,
+                url: "{{ url('admin/sliders') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -566,7 +566,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('sliders') }}/" + id,
+                url: "{{ url('admin/sliders') }}/" + id,
                 data: {
                     _token: token,
                 },

@@ -935,7 +935,7 @@
         });
 
         // read product
-
+        let asset_path = "{{ asset('') }}";
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
             console.log(id);
@@ -943,7 +943,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('products') }}/" + id + "/edit",
+                url: "{{ url('admin/products') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -952,7 +952,8 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#product_imgs").attr("src", res.data.product_imgs);
+                    // $("#product_imgs").attr("src", asset_path + res.data.product_imgs); // off cause multiple images stored here
+                    $("#product_thumb").attr("src", asset_path + res.data.product_thumb);
                     $("#category_id").val(res.data.category_id);
                     $("#subcategory_id").val(res.data.subcategory_id);
                     $("#brand_id").val(res.data.brand_id);
@@ -979,7 +980,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('products') }}/" + id,
+                url: "{{ url('admin/products') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -1007,7 +1008,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('products') }}/" + id,
+                url: "{{ url('admin/products') }}/" + id,
                 data: {
                     _token: token,
                 },

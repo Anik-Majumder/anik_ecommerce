@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BasicinfoController;
@@ -15,7 +16,7 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/register', [AdminController::class, 'createRegister'])
@@ -54,6 +55,7 @@ Route::prefix('admin')->middleware('is_admin')->group(function ()
     Route::get('/get-brands-data', [BrandController::class, 'getBrandsData'])->name('get-brand-data');
 
     Route::resource('/brands', BrandController::class)->names('brand');
+
 
 //basicinfos routes
 

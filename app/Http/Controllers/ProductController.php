@@ -39,7 +39,7 @@ class ProductController extends Controller
 //                $images = json_decode($product->product_imgs, true);
 //                $firstImage = isset($images[0]) ? $images[0] : 'default.jpg'; // Fallback if empty
 //                return '<img src="' . $firstImage . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
-                return '<img src="' . $product->product_thumb . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                return '<img src="' . asset($product->product_thumb) . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
             })
             ->addColumn('product_size', function ($product) {
 

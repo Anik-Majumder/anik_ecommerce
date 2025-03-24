@@ -1,21 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\BasicinfoController;
-use App\Http\Controllers\BlogCommentController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ColorController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SizeController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\SubcategoryController;
+
 
 Route::get('/', function () {
     return view('frontend.index');

@@ -26,7 +26,7 @@ class BrandController extends Controller
                 return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $brand->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteBrandBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $brand->id . '">Delete</a>';
             })->addColumn('brand_image', function ($brand) {
-                return '<img src="' . $brand->brand_image . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                return '<img src="' . asset($brand->brand_image) . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
             })->rawColumns(['brand_image', 'action'])
             ->make(true);
     }

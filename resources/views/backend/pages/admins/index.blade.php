@@ -48,27 +48,30 @@
                                 </button>
                             </div>
                             <!-- Satic modal button end-->
-                            <table
+                            <div class="table-responsive" style="max-width: 100%; overflow-x: auto;">
+                                <table
                                     id="adminTable"
                                     class="table table-striped table-bordered dt-responsive nowrap"
                                     style="
-                                border-collapse: collapse;
-                                border-spacing: 0;
-                                width: 100%;
-                            "
-                            >
-                                <thead>
-                                <tr>
-                                    <th>SL</th>
-                                    <th>profile_img</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Password</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                            </table>
+                                    border-collapse: collapse;
+                                    border-spacing: 0;
+                                    width: 100%;
+                                    white-space: nowrap;
+                                "
+                                >
+                                    <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>profile_img</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Password</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -413,7 +416,7 @@
         </div>
         <!-- End Page-content -->
     </div>
-    
+
 @endsection
 
 
@@ -427,6 +430,7 @@
 {{--    ></script>--}}
 
     <script>
+
         // render datatables
 
         var token = $("input[name='_token']").val();
@@ -435,6 +439,10 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('get-admin-data') }}",
+            // ✅ Enable horizontal scrolling
+            scrollX: true,
+            autoWidth: false,
+            responsive: true,
 
             columns: [
                 {
@@ -489,6 +497,7 @@
         });
 
         // read admin
+        let asset_path = "{{ asset('') }}";
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
             console.log(id);
@@ -496,7 +505,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('admins') }}/" + id + "/edit",
+                url: "{{ url('admin/admins') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -505,7 +514,7 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#profile_img").attr("src", res.data.profile_img);
+                    $("#profile_img").attr("src", asset_path + res.data.profile_img);
                     $("#name").val(res.data.name);
                     $("#email").val(res.data.email);
                     $("#phone").val(res.data.phone);
@@ -523,7 +532,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('admins') }}/" + id,
+                url: "{{ url('admin/admins') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -550,7 +559,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('admins') }}/" + id,
+                url: "{{ url('admin/admins') }}/" + id,
                 data: {
                     _token: token,
                 },

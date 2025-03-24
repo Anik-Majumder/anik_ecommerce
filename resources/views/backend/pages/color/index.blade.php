@@ -391,7 +391,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('colors') }}/" + id + "/edit",
+                url: "{{ url('admin/colors') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -417,7 +417,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('colors') }}/" + id,
+                url: "{{ url('admin/colors') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -445,7 +445,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('colors') }}/" + id,
+                url: "{{ url('admin/colors') }}/" + id,
                 data: {
                     _token: token,
                 },

@@ -433,7 +433,7 @@
         });
 
         // read subcategory
-
+        let asset_path = "{{ asset('') }}";
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
             console.log(id);
@@ -441,7 +441,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('subcategories') }}/" + id + "/edit",
+                url: "{{ url('admin/subcategories') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -450,7 +450,7 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#subcategory_image").attr("src", res.data.subcategory_image);
+                    $("#subcategory_image").attr("src", asset_path + res.data.subcategory_image);
                     $("#category_id").val(res.data.category_id);
                     $("#subcategory_name").val(res.data.subcategory_name);
                     $("#subcategory_slug").val(res.data.subcategory_slug);
@@ -468,7 +468,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('subcategories') }}/" + id,
+                url: "{{ url('admin/subcategories') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -496,7 +496,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('subcategories') }}/" + id,
+                url: "{{ url('admin/subcategories') }}/" + id,
                 data: {
                     _token: token,
                 },

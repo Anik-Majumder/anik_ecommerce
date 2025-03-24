@@ -25,9 +25,9 @@ class BasicinfoController extends Controller
                 return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $basicinfo->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteBasicinfoBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $basicinfo->id . '">Delete</a>';
             })->addColumn('light_logo', function ($basicinfo) {
-                return '<img src="' . $basicinfo->light_logo . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                return '<img src="' . asset($basicinfo->light_logo) . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
             })->addColumn('dark_logo', function ($basicinfo) {
-                return '<img src="' . $basicinfo->dark_logo . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                return '<img src="' . asset($basicinfo->dark_logo) . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
             })->rawColumns(['light_logo', 'dark_logo', 'action'])
             ->make(true);
     }

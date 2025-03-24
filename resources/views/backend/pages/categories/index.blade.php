@@ -383,7 +383,7 @@
         });
 
         // read category
-
+        let asset_path = "{{ asset('') }}";
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
             console.log(id);
@@ -391,7 +391,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id + "/edit",
+                url: "{{ url('admin/categories') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -400,7 +400,7 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#category_image").attr("src", res.data.category_image);
+                    $("#category_image").attr("src", asset_path + res.data.category_image);
                     $("#category_name").val(res.data.category_name);
                     $("#category_slug").val(res.data.category_slug);
                 },
@@ -417,7 +417,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id,
+                url: "{{ url('admin/categories') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -445,7 +445,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('categories') }}/" + id,
+                url: "{{ url('admin/categories') }}/" + id,
                 data: {
                     _token: token,
                 },

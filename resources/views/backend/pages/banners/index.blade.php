@@ -510,7 +510,7 @@
         });
 
         // read banner
-
+        let asset_path = "{{ asset('') }}";
         $(document).on("click", ".edit-btn", function () {
             let id = $(this).data("id");
             console.log(id);
@@ -518,7 +518,7 @@
             // $('#id').val(id);
 
             $.ajax({
-                url: "{{ url('banners') }}/" + id + "/edit",
+                url: "{{ url('admin/banners') }}/" + id + "/edit",
                 type: "GET",
                 data: {
                     id: id,
@@ -527,7 +527,7 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    $("#banner_img").attr("src", res.data.banner_img);
+                    $("#banner_img").attr("src", asset_path + res.data.banner_img);
                     $("#banner_title_1").val(res.data.banner_title_1);
                     $("#banner_title_2").val(res.data.banner_title_2);
                     $("#banner_slug").val(res.data.banner_slug);
@@ -547,7 +547,7 @@
             let id = $("#edit_id").val();
 
             $.ajax({
-                url: "{{ url('banners') }}/" + id,
+                url: "{{ url('admin/banners') }}/" + id,
                 type: "POST",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -575,7 +575,7 @@
             console.log(id);
 
             $.ajax({
-                url: "{{ url('banners') }}/" + id,
+                url: "{{ url('admin/banners') }}/" + id,
                 data: {
                     _token: token,
                 },

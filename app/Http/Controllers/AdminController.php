@@ -24,10 +24,10 @@ class AdminController extends Controller
 
         return DataTables::of($admins)
             ->addColumn('action', function ($admin) {
-                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $admin->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a> 
+                return '<a  class="btn btn-sm btn-success edit-btn" data-id="' . $admin->id . '" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                 <a id="deleteAdminBtn" class="btn btn-sm btn-danger delete-btn" data-id="' . $admin->id . '">Delete</a>';
             })->addColumn('profile_img', function ($admin) {
-                return '<img src="' . $admin->profile_img . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
+                return '<img src="' . asset($admin->profile_img) . '" border="0" width="40" height="40" class="img-rounded" align="center" />';
             })->rawColumns(['profile_img', 'action'])
             ->make(true);
     }
@@ -82,30 +82,30 @@ class AdminController extends Controller
                 'password' => ['required'],
             ]
         );
-        
-        
+
+
          $admin = Admin::where('email', $request->email)->first();
-        
+
 
         if ($admin && Auth::guard('admin')->attempt(['email' => $request->email,
                 'password' => $request->password])) {
             $request->session()->regenerate();
-            
+
             Auth::login($admin);
 
 //            return redirect()->route('admin.dashboard');
-            
+
             return redirect()->intended(route('admin.dashboard'));
         }
 
         return redirect()->back()->with('error', 'Invalid email or password');
-        
+
     }
 
 
     public function store()
     {
-        
+
     }
 
     /**
