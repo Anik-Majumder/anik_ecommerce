@@ -46,6 +46,7 @@ class AdminController extends Controller
     }
     public function storeRegister(Request $request)
     {
+//        dd($request->all(), $request->file('profile_img'));
         $request->validate(
             [
                 'name' => ['required', 'string', 'max:255'],
@@ -58,11 +59,19 @@ class AdminController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => $request->password,
-            'profile_img' => $request->profile_img,
+            'password' => Hash::make($request->password),
         ]);
 
-        // event(new Registered($admin));
+        // single image upload
+
+        if ($request->hasFile('profile_img')) {
+            $profile_img = $request->file('profile_img');
+            $img = uniqid() . '.' . time() . '.' . $profile_img->getClientOriginalExtension();
+            $profile_img->move(public_path('images/admin/'), $img);
+            $admin->profile_img = 'images/admin/' . $img;
+            $admin->save();
+        }
+
 
         Auth::guard('admin')->login($admin);
 
@@ -200,6 +209,12 @@ class AdminController extends Controller
 
     public function destroy(Admin $admin)
     {
+        // Check if the admin has a profile image and if the file exists
+        if ($admin->profile_img && file_exists(public_path($admin->profile_img))) {
+            // Delete the image file
+            unlink(public_path($admin->profile_img));
+        }
+
         $admin->delete();
 
         return response()->json(['message' => 'success', 'data' => ''], 200);

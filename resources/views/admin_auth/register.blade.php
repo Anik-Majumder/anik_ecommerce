@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('admin.register') }}">
+    <form method="POST" action="{{ route('admin.register') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Name -->
@@ -52,7 +52,7 @@
                 id="profile_img"
                 class="block mt-1 w-full"
                 type="file"
-                name="file"
+                name="profile_img"
                 required
             />
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />

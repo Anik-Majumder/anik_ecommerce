@@ -199,6 +199,21 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        // Check if the product has a product thumbnail image and delete it
+        if ($product->product_thumb && file_exists(public_path($product->product_thumb))) {
+            unlink(public_path($product->product_thumb));
+        }
+
+        // Check if the product has multiple images and delete them
+        if ($product->product_imgs) {
+            $product_imgs = json_decode($product->product_imgs);
+            foreach ($product_imgs as $product_img) {
+                if (file_exists(public_path($product_img))) {
+                    unlink(public_path($product_img));
+                }
+            }
+        }
+
         $product->delete();
 
         return response()->json(['message' => 'success', 'data' => ''], 200);
