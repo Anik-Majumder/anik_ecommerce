@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
@@ -40,7 +41,8 @@ Route::middleware('is_admin')->prefix('admin')->name('admin.')->group(function (
 
 Route::view('/', 'frontend.pages.home')->name('home');
 Route::view('/shop', 'frontend.pages.shop')->name('shop');
-Route::view('/shop-detail', 'frontend.pages.detail')->name('shop-detail');
+//Route::view('/shop-detail', 'frontend.pages.detail')->name('shop-detail');
+Route::get('/shop-detail/{product}', [ProductController::class, 'show'])->name('shop-detail');
 Route::view('/shopping-cart', 'frontend.pages.cart')->name('shopping-cart');
 Route::view('/checkout', 'frontend.pages.checkout')->name('checkout');
 Route::view('/contact', 'frontend.pages.contact')->name('contact');

@@ -62,7 +62,6 @@
                                     <th>SL</th>
                                     <th>Category Image</th>
                                     <th>Category Name</th>
-                                    <th>Category Slug</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -346,9 +345,6 @@
                 },
                 {
                     data: "category_name",
-                },
-                {
-                    data: "category_slug",
                 },
                 {
                     data: "action",

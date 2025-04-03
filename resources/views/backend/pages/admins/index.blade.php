@@ -66,7 +66,6 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Password</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -460,10 +459,6 @@
                 {
                     data: "phone",
                 },
-                {
-                    data: "password",
-                },
-
                 {
                     data: "action",
                     name: "Action",

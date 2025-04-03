@@ -52,7 +52,18 @@ class ProductController extends Controller
                 return $html;
 
             })
-            ->rawColumns(['product_thumb','product_size', 'action'])
+            ->addColumn('product_color', function ($product) {
+
+                $html='';
+
+                foreach ( json_decode($product->product_color) as $color) {
+
+                    $html .= '<span class="badge bg-primary mx-1"> '.$color.'</span>';
+                }
+                return $html;
+
+            })
+            ->rawColumns(['product_thumb','product_size','product_color','action'])
 
             ->make(true);
     }
@@ -80,12 +91,13 @@ class ProductController extends Controller
         $product->product_name = $request->product_name;
         $product->product_qty = $request->product_qty;
         $product->product_size = json_encode($request->product_size);
-        $product->product_color = $request->product_color;
+        $product->product_color = json_encode($request->product_color);
         $product->product_weight = $request->product_weight;
         $product->product_new_price = $request->product_new_price;
         $product->product_old_price = $request->product_old_price;
         $product->product_short_desc = $request->product_short_desc;
         $product->product_long_desc = $request->product_long_desc;
+        $product->product_slug = Str::slug($request->product_slug) . uniqid();
 
         // single image upload
 
@@ -128,7 +140,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $product->product_size = json_decode($product->product_size, true);
+        $product->product_color = json_decode($product->product_color, true);
+
+        return view('frontend.pages.detail', compact('product'));
     }
 
     /**
@@ -136,6 +151,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $product->product_imgs = json_decode($product->product_imgs, true);
         return response()->json(['message' => 'success', 'data' => $product], 200);
     }
 
@@ -150,8 +166,8 @@ class ProductController extends Controller
         $product->product_imgs = $request->product_imgs;
         $product->product_name = $request->product_name;
         $product->product_qty = $request->product_qty;
-        $product->product_size = $request->product_size;
-        $product->product_color = $request->product_color;
+        $product->product_size = json_encode($request->product_size);
+        $product->product_color = json_encode($request->product_color);
         $product->product_weight = $request->product_weight;
         $product->product_new_price = $request->product_new_price;
         $product->product_old_price = $request->product_old_price;

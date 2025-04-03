@@ -22,7 +22,7 @@ class SubcategoryController extends Controller
 
     public function getSubcategoriesData()
     {
-        $subcategory = Subcategory::get();
+        $subcategory = Subcategory::with('category')->get();
 
         return DataTables::of($subcategory)
             ->addColumn('action', function ($subcategory) {

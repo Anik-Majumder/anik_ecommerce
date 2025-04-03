@@ -63,14 +63,14 @@
                                     <tr>
                                         <th>SL</th>
                                         <th>Product Image</th>
-                                        <th>Category Id</th>
-                                        <th>Sub-Category Id</th>
-                                        <th>Brand Id</th>
+                                        <th>Category Name</th>
+                                        <th>Sub-Category Name</th>
+                                        <th>Brand Name</th>
                                         <th>Product Name</th>
                                         <th>Product Qty</th>
                                         <th>Product Size</th>
-                                        <th>Product color</th>
                                         <th>Product Weight</th>
+                                        <th>Product color</th>
                                         <th>Product New Price</th>
                                         <th>Product Old Price</th>
                                         <th>Product Short Desc</th>
@@ -142,7 +142,7 @@
                                                                         required >
                                                                         @foreach($categories as $category)
                                                                             <option value="{{ $category->id }}">
-                                                                                {{ $category->id }} - {{ $category->category_name }}
+                                                                                {{ $category->category_name }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -164,7 +164,7 @@
                                                                         required >
                                                                         @foreach($subcategories as $subcategory)
                                                                             <option value="{{ $subcategory->id }}">
-                                                                                {{ $subcategory->id }} - {{ $subcategory->subcategory_name }}
+                                                                                {{ $subcategory->subcategory_name }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -185,7 +185,7 @@
                                                                         required >
                                                                         @foreach($brands as $brand)
                                                                             <option value="{{ $brand->id }}">
-                                                                                {{ $brand->id }} - {{ $brand->brand_name }}
+                                                                                {{ $brand->brand_name }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -274,12 +274,13 @@
                                                                         Color</label
                                                                     >
                                                                     <select
-                                                                        name="product_color"
+                                                                        name="product_color[]"
                                                                         id="product_color"
                                                                         class="form-control"
-                                                                        required >
+                                                                        required
+                                                                        multiple>
                                                                         @foreach($colors as $color)
-                                                                            <option value="{{ $color->id }}">
+                                                                            <option value="{{ $color->color_name }}">
                                                                                 {{ $color->color_name }}
                                                                             </option>
                                                                         @endforeach
@@ -496,7 +497,7 @@
                                                                         required >
                                                                         @foreach($categories as $category)
                                                                             <option value="{{ $category->id }}">
-                                                                                {{ $category->id }} - {{ $category->category_name }}
+                                                                                {{ $category->category_name }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -518,7 +519,7 @@
                                                                         required >
                                                                         @foreach($subcategories as $subcategory)
                                                                             <option value="{{ $subcategory->id }}">
-                                                                                {{ $subcategory->id }} - {{ $subcategory->subcategory_name }}
+                                                                                {{ $subcategory->subcategory_name }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -539,7 +540,7 @@
                                                                         required >
                                                                         @foreach($brands as $brand)
                                                                             <option value="{{ $brand->id }}">
-                                                                                {{ $brand->id }} - {{ $brand->brand_name }}
+                                                                                {{ $brand->brand_name }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -596,7 +597,7 @@
                                                                         multiple
                                                                         required >
                                                                         @foreach($sizes as $size)
-                                                                            <option value="{{ $size->id }}">
+                                                                            <option value="{{ $size->size_name }}">
                                                                                 {{ $size->size_name }}
                                                                             </option>
                                                                         @endforeach
@@ -629,12 +630,13 @@
                                                                         Color</label
                                                                     >
                                                                     <select
-                                                                        name="product_color"
+                                                                        name="product_color[]"
                                                                         id="product_color"
                                                                         class="form-control"
-                                                                        required >
+                                                                        required
+                                                                        multiple>
                                                                         @foreach($colors as $color)
-                                                                            <option value="{{ $color->id }}">
+                                                                            <option value="{{ $color->color_name }}">
                                                                                 {{ $color->color_name }}
                                                                             </option>
                                                                         @endforeach
@@ -846,19 +848,19 @@
                 {
                     data: "category",
                     render: function(data) {
-                        return data ? `${data.id} - ${data.category_name}` : 'N/A';
+                        return data ? `${data.category_name}` : 'N/A';
                     }
                 },
                 {
                     data: "subcategory",
                     render: function(data) {
-                        return data ? `${data.id} - ${data.subcategory_name}` : 'N/A';
+                        return data ? `${data.subcategory_name}` : 'N/A';
                     }
                 },
                 {
                     data: "brand",
                     render: function(data) {
-                        return data ? `${data.id} - ${data.brand_name}` : 'N/A';
+                        return data ? `${data.brand_name}` : 'N/A';
                     }
                 },
                 {
@@ -952,7 +954,10 @@
                 contentType: false,
                 success: function (res) {
                     $("#edit_id").val(res.data.id);
-                    // $("#product_imgs").attr("src", asset_path + res.data.product_imgs); // off cause multiple images stored here
+                    if (res.data.product_imgs.length > 0) {
+                        let firstImage = res.data.product_imgs[0]; // Get first image from array
+                        $("#product_img").attr("src", "{{ asset('') }}" + firstImage);
+                    }
                     $("#product_thumb").attr("src", asset_path + res.data.product_thumb);
                     $("#category_id").val(res.data.category_id);
                     $("#subcategory_id").val(res.data.subcategory_id);

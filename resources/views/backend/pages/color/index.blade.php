@@ -61,7 +61,6 @@
                                 <tr>
                                     <th>SL</th>
                                     <th>Color Name</th>
-                                    <th>Color Slug</th>
                                     <th>Color Code</th>
                                     <th>Action</th>
                                 </tr>
@@ -343,9 +342,6 @@
                 },
                 {
                     data: "color_name",
-                },
-                {
-                    data: "color_slug",
                 },
                 {
                     data: "color_code",

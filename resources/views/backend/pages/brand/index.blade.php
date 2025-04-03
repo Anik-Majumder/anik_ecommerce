@@ -62,7 +62,6 @@
                                     <th>SL</th>
                                     <th>Brand Image</th>
                                     <th>Brand Name</th>
-                                    <th>Brand Slug</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -346,9 +345,6 @@
                 },
                 {
                     data: "brand_name",
-                },
-                {
-                    data: "brand_slug",
                 },
                 {
                     data: "action",

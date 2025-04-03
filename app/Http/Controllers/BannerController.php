@@ -97,7 +97,6 @@ class BannerController extends Controller
         $banner->banner_img = $request->banner_img;
         $banner->banner_title_1 = $request->banner_title_1;
         $banner->banner_title_2 = $request->banner_title_2;
-        $banner->banner_slug = Str::slug($request->banner_slug) . uniqid();
         $banner->banner_btn_link = $request->banner_btn_link;
         $banner->banner_btn_text = $request->banner_btn_text;
 

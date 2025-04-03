@@ -62,10 +62,9 @@
                                 <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Category ID</th>
+                                    <th>Category Name</th>
                                     <th>Sub-Category Image</th>
                                     <th>Sub-Category Name</th>
-                                    <th>Sub-Category Slug</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -132,7 +131,7 @@
                                                                         required >
                                                                         @foreach($categories as $category)
                                                                             <option value="{{ $category->id }}">
-                                                                                {{ $category->id }} - {{ $category->category_name }}
+                                                                                {{ $category->category_name }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -270,7 +269,7 @@
                                                                         required >
                                                                         @foreach($categories as $category)
                                                                             <option value="{{ $category->id }}">
-                                                                                {{ $category->id }} - {{ $category->category_name }}
+                                                                                {{ $category->category_name }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -389,16 +388,16 @@
                     data: "id",
                 },
                 {
-                    data: "category_id",
+                    data: "category",
+                    render: function(data) {
+                        return data ? `${data.category_name}` : 'N/A';
+                    }
                 },
                 {
                     data: "subcategory_image",
                 },
                 {
                     data: "subcategory_name",
-                },
-                {
-                    data: "subcategory_slug",
                 },
                 {
                     data: "action",

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -31,4 +32,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductColor::class);
     }
+    public function getRouteKeyName()
+    {
+        return 'product_slug'; // Now Laravel will look for the `product_slug` column
+    }
+
 }

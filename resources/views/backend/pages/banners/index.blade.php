@@ -65,7 +65,6 @@
                                         <th>Banner Image</th>
                                         <th>Banner Title 1</th>
                                         <th>Banner Title 2</th>
-                                        <th>Banner Slug</th>
                                         <th>Banner btn Link</th>
                                         <th>Banner btn Text</th>
                                         <th>Action</th>
@@ -476,9 +475,6 @@
                     data: "banner_title_2",
                 },
                 {
-                    data: "banner_slug",
-                },
-                {
                     data: "banner_btn_text",
                 },
                 {
@@ -537,7 +533,6 @@
                     $("#banner_img").attr("src", asset_path + res.data.banner_img);
                     $("#banner_title_1").val(res.data.banner_title_1);
                     $("#banner_title_2").val(res.data.banner_title_2);
-                    $("#banner_slug").val(res.data.banner_slug);
                     $("#banner_btn_text").val(res.data.banner_btn_text);
                     $("#banner_btn_link").val(res.data.banner_btn_link);
                 },

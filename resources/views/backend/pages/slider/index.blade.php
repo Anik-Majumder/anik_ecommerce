@@ -63,7 +63,6 @@
                                     <th>Slider Image</th>
                                     <th>Title 1</th>
                                     <th>Title 2</th>
-                                    <th>Slider Slug</th>
                                     <th>Btn Text</th>
                                     <th>Btn Link</th>
                                     <th>Action</th>
@@ -458,9 +457,6 @@
                 },
                 {
                     data: "slider_title_2",
-                },
-                {
-                    data: "slider_slug",
                 },
                 {
                     data: "slider_btn_text",

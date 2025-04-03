@@ -61,7 +61,6 @@
                                 <tr>
                                     <th>SL</th>
                                     <th>Size Name</th>
-                                    <th>Size Slug</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -303,9 +302,6 @@
                 },
                 {
                     data: "size_name",
-                },
-                {
-                    data: "size_slug",
                 },
                 {
                     data: "action",
