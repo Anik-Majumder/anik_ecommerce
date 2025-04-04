@@ -83,6 +83,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="">
+                        <i class="mdi mdi-cart-plus"></i>
+                        <span>Carts</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('basicinfos.index') }}">
                         <i class="mdi mdi-information"></i>
                         <span>Basic Infos</span>

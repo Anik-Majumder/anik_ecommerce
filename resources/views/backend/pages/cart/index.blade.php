@@ -1,6 +1,6 @@
 @extends('backend.layout.master')
 
-@section('title','products')
+@section('title','cart')
 
 @push('css')
     <style></style>
