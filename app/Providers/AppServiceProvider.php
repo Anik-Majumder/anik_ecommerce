@@ -78,6 +78,11 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
+        View::composer('frontend.pages.shop', function ($view) {
+            $products = Product::paginate(12);
+            $view->with('products', $products);
+        });
+
 
 
     }

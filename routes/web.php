@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -14,7 +15,7 @@ Route::get('/test', function () {
 });
 
 Route::get('/user/dashboard', function () {
-    return view('user-dashboard');
+    return view('frontend.pages.home');
 })->middleware(['auth', 'verified'])->name('user.dashboard');
 
 
@@ -26,26 +27,29 @@ Route::middleware('auth')->group(function () {
 
 
 
-
-
-// admin routes
-
-
-
-Route::middleware('is_admin')->prefix('admin')->name('admin.')->group(function () {
-
-    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
-});
+Route::middleware(['auth', 'verified'])->group(function ()
+{
 
 // frontend routes
 
-Route::view('/', 'frontend.pages.home')->name('home');
-Route::view('/shop', 'frontend.pages.shop')->name('shop');
+    Route::view('/', 'frontend.pages.home')->name('home');
+    Route::view('/shop', 'frontend.pages.shop')->name('shop');
 //Route::view('/shop-detail', 'frontend.pages.detail')->name('shop-detail');
-Route::get('/shop-detail/{product}', [ProductController::class, 'show'])->name('shop-detail');
-Route::view('/shopping-cart', 'frontend.pages.cart')->name('shopping-cart');
-Route::view('/checkout', 'frontend.pages.checkout')->name('checkout');
-Route::view('/contact', 'frontend.pages.contact')->name('contact');
+    Route::get('/shop-detail/{product}', [ProductController::class, 'show'])->name('shop-detail');
+
+    Route::view('/shopping-cart', 'frontend.pages.cart')->name('shopping-cart');
+    Route::post('/cart/add', [CartController::class, 'store'])->name('cart.store');
+
+    Route::view('/checkout', 'frontend.pages.checkout')->name('checkout');
+    Route::view('/contact', 'frontend.pages.contact')->name('contact');
+});
+
+
+
+
+
+
+
 
 
 

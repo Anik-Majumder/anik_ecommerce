@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
@@ -28,7 +30,24 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            if (!auth()->check()) {
+                return response()->json(['error' => 'You must be logged in to add to cart'], 401);
+            }
+
+            $product = Product::findOrFail($request->product_id);
+
+            $cart = Cart::create([
+                'user_id' => auth()->id(),
+                'product_id' => $product->id,
+                'new_price' => $product->product_new_price,
+                'old_price' => $product->product_old_price,
+                'quantity' => $request->quantity ?? 1,
+                'size' => $request->size,
+                'color' => $request->color,
+            ]);
+
+            return response()->json(['message' => 'Product added to cart!', 'data' => $cart]);
+
     }
 
     /**

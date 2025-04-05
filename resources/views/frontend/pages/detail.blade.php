@@ -53,44 +53,48 @@
                 </div>
                 <h3 class="font-weight-semi-bold mb-4">${{$product->product_new_price}}</h3>
                 <p class="mb-4">{{$product->product_short_desc}}</p>
-                <div class="d-flex mb-3">
-                    <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
-                    <form>
-                        @foreach($product->product_size as $size)
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="{{$size}}" name="size" value="{{$size}}">
-                                <label class="custom-control-label" for="{{$size}}">{{$size}}</label>
-                            </div>
-                        @endforeach
-                    </form>
-                </div>
-                <div class="d-flex mb-4">
-                    <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
-                    <form>
-                        @foreach($product->product_color as $color)
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="{{$color}}" name="color" value="{{$color}}">
-                                <label class="custom-control-label" for="{{$color}}">{{$color}}</label>
-                            </div>
-                        @endforeach
-                    </form>
-                </div>
-                <div class="d-flex align-items-center mb-4 pt-2">
-                    <div class="input-group quantity mr-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus" >
-                            <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
-                        <input type="text" class="form-control bg-secondary text-center" value="1">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
+                <form id="add-to-cart-form">
+                    <div class="d-flex mb-3">
+                        <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
+
+                            @foreach($product->product_size as $size)
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="{{$size}}" name="size" value="{{$size}}">
+                                    <label class="custom-control-label" for="{{$size}}">{{$size}}</label>
+                                </div>
+                            @endforeach
+
                     </div>
-                        <button class="btn btn-primary px-3 add-to-cart-btn"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
-                </div>
+                    <div class="d-flex mb-4">
+                        <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
+
+                            @foreach($product->product_color as $color)
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="{{$color}}" name="color" value="{{$color}}">
+                                    <label class="custom-control-label" for="{{$color}}">{{$color}}</label>
+                                </div>
+                            @endforeach
+
+                    </div>
+                    <div class="d-flex align-items-center mb-4 pt-2">
+                        <div class="input-group quantity mr-3" style="width: 130px;">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-primary btn-minus" >
+                                <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="form-control bg-secondary text-center product-quantity" value="1">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-primary btn-plus">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary px-3 " id="add-to-cart-btn" data-product-id="{{ $product->id }}">
+                            <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+                        </a>
+                    </div>
+                </form>
                 <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
                     <div class="d-inline-flex">
@@ -221,9 +225,42 @@
 
 
 @endsection
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @push('js')
     <script>
+        $(document).ready(function () {
+            $("#add-to-cart-btn").click(function (e) {
+                e.preventDefault();
 
+                let product_id = $(this).data("product-id");
+                let size = $("input[name='size']:checked").val();
+                let color = $("input[name='color']:checked").val();
+                let quantity = $(".product-quantity").val();
+
+                if (!size || !color) {
+                    alert("Please select both size and color.");
+                    return;
+                }
+
+                $.ajax({
+                    url: "{{ route('cart.store') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        product_id: product_id,
+                        size: size,
+                        color: color,
+                        quantity: quantity,
+                    },
+                    success: function (res) {
+                        alert(res.message); // Show success message
+                    },
+                    error: function (err) {
+                        console.log(err);
+                        alert("Error adding product to cart.");
+                    },
+                });
+            });
+        });
     </script>
 @endpush

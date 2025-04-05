@@ -38,7 +38,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 //})->name('admin.dashboard');
 
 
+Route::middleware('is_admin')->prefix('admin')->name('admin.')->group(function () {
 
+    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+});
 
 
 // admin routes
