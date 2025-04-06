@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Banner;
 use App\Models\Basicinfo;
 use App\Models\Brand;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\View;
@@ -31,6 +32,12 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 'categories'=> Category::with('subcategories')->get(),
                 'basicinfos' => BasicInfo::first(),
+            ]);
+        });
+
+        View::composer('frontend.components.menu', function ($view) {
+            $view->with([
+                'categories'=> Category::with('subcategories')->get()
             ]);
         });
 
@@ -81,6 +88,11 @@ class AppServiceProvider extends ServiceProvider
         View::composer('frontend.pages.shop', function ($view) {
             $products = Product::paginate(12);
             $view->with('products', $products);
+        });
+
+        View::composer('frontend.pages.cart', function ($view) {
+            $carts = Cart::all();
+            $view->with('carts', $carts);
         });
 
 

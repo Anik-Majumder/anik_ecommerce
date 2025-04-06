@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
@@ -14,7 +15,15 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.pages.cart.index');
+    }
+
+    public function getCartData()
+    {
+        $carts = Cart::all();
+
+        return DataTables::of($carts)
+            ->make(true);
     }
 
     /**

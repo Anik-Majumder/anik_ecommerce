@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BasicinfoController;
 use App\Http\Controllers\BlogCommentController;
@@ -52,6 +53,12 @@ Route::prefix('admin')->middleware('is_admin')->group(function ()
     Route::get('/get-admins-data', [AdminController::class, 'getAdminData'])->name('get-admin-data');
 
     Route::resource('/admins', AdminController::class)->names('admin');
+
+//cart routes
+
+    Route::get('/get-cart-data', [CartController::class, 'getCartData'])->name('get-cart-data');
+
+    Route::resource('/carts', CartController::class)->names('cart');
 
 //brand routes
 

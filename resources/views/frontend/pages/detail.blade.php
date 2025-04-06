@@ -238,7 +238,7 @@
                 let quantity = $(".product-quantity").val();
 
                 if (!size || !color) {
-                    alert("Please select both size and color.");
+                    Swal.fire("Please select both size and color!");
                     return;
                 }
 
@@ -253,11 +253,11 @@
                         quantity: quantity,
                     },
                     success: function (res) {
-                        alert(res.message); // Show success message
+                        Swal.fire("Product Added to Cart Successfully!");
                     },
                     error: function (err) {
                         console.log(err);
-                        alert("Error adding product to cart.");
+                        Swal.fire("Error adding product to cart!");
                     },
                 });
             });

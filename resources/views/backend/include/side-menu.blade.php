@@ -83,7 +83,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('cart.index') }}">
                         <i class="mdi mdi-cart-plus"></i>
                         <span>Carts</span>
                     </a>
