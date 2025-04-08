@@ -56,7 +56,7 @@
                 </a>
                 <a href="" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge" id="cart-quantity">0</span>
+                    <span class="badge" id="cart-quantity">{{$cartCount}}</span>
                 </a>
             </div>
         </div>

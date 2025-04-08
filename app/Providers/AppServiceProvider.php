@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -90,9 +91,60 @@ class AppServiceProvider extends ServiceProvider
             $view->with('products', $products);
         });
 
+        View::composer('frontend.components.topbar', function ($view) {
+            $cartCount = 0;
+
+            if (Auth::check()) {
+                $cartCount = Cart::where('user_id', Auth::id())->count();
+            }
+
+            $view->with('cartCount', $cartCount);
+        });
+
         View::composer('frontend.pages.cart', function ($view) {
-            $carts = Cart::all();
-            $view->with('carts', $carts);
+            $user = Auth::user(); // Check if user is logged in
+
+            $carts = $user ? Cart::where('user_id', $user->id)->get() : collect();
+
+            $subtotal = 0;
+
+            $carts->each(function ($cart) use (&$subtotal) {
+                $cart->product = \App\Models\Product::find($cart->product_id);
+                $subtotal += $cart->new_price * $cart->quantity;
+            });
+
+            $shippingFee = 10;
+            $totalPrice = $subtotal + $shippingFee;
+
+            $view->with([
+                'carts' => $carts,
+                'subtotal' => $subtotal,
+                'shippingFee' => $shippingFee,
+                'totalprice' => $totalPrice,
+            ]);
+        });
+
+        View::composer('frontend.pages.checkout', function ($view) {
+            $user = Auth::user(); // Check if user is logged in
+
+            $carts = $user ? Cart::where('user_id', $user->id)->get() : collect();
+
+            $subtotal = 0;
+
+            $carts->each(function ($cart) use (&$subtotal) {
+                $cart->product = \App\Models\Product::find($cart->product_id);
+                $subtotal += $cart->new_price * $cart->quantity;
+            });
+
+            $shippingFee = 10;
+            $totalPrice = $subtotal + $shippingFee;
+
+            $view->with([
+                'carts' => $carts,
+                'subtotal' => $subtotal,
+                'shippingFee' => $shippingFee,
+                'totalprice' => $totalPrice,
+            ]);
         });
 
 

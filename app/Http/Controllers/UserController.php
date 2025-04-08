@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -143,6 +144,17 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json(['message' => 'success', 'data' => ''], 200);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+//        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
+
     }
 
 }

@@ -54,8 +54,17 @@
                         <a href="{{route('contact')}}" class="nav-item nav-link">Contact</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="{{route('login')}}" class="nav-item nav-link">Login</a>
-                        <a href="{{route('register')}}" class="nav-item nav-link">Register</a>
+                        @auth
+                            <form action="{{ route('logout') }}" method="POST" class="nav-item">
+                                @csrf
+                                <button type="submit" class="nav-link btn btn-link" style="border: none; padding: 0; background: none;">
+                                    Logout
+                                </button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
+                            <a href="{{ route('register') }}" class="nav-item nav-link">Register</a>
+                        @endauth
                     </div>
                 </div>
             </nav>

@@ -142,6 +142,7 @@ class ProductController extends Controller
     {
         $product->product_size = json_decode($product->product_size, true);
         $product->product_color = json_decode($product->product_color, true);
+        $product->product_imgs = json_decode($product->product_imgs, true);
 
         return view('frontend.pages.detail', compact('product'));
     }
