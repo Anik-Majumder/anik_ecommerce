@@ -38,11 +38,13 @@ Route::middleware(['auth', 'verified'])->group(function ()
     Route::get('/shop-detail/{product}', [ProductController::class, 'show'])->name('shop-detail');
 
     Route::view('/shopping-cart', 'frontend.pages.cart')->name('shopping-cart');
-    Route::post('/cart/add', [CartController::class, 'store'])->name('cart.store');
 
     Route::view('/checkout', 'frontend.pages.checkout')->name('checkout');
     Route::view('/contact', 'frontend.pages.contact')->name('contact');
 });
+
+
+Route::post('/cart/add', [CartController::class, 'store'])->name('cart.store');
 
 
 

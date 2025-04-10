@@ -39,7 +39,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-            if (!auth()->check()) {
+            if (!auth()->guard('web')->check()) {
                 return response()->json(['error' => 'You must be logged in to add to cart'], 401);
             }
 

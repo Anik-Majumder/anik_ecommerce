@@ -253,7 +253,7 @@
                         quantity: quantity,
                     },
                     success: function (res) {
-                        Swal.fire("Product Added to Cart Successfully!");
+                        Swal.fire(res.message);
                     },
                     error: function (err) {
                         console.log(err);
